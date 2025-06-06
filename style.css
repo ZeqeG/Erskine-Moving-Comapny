@@ -1,0 +1,249 @@
+html,
+body {
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0
+}
+
+
+p {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.5em;
+}
+
+h2 {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 2.25em;
+}
+
+h1 {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 3.25em;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 120pt;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+    position: fixed;
+    top: 0;
+
+    width: 100vw;
+
+    transition: background-color 0.2s, height 0.3s;
+}
+
+.headerBtn {
+    border-radius: 50px;
+    font-size: 1em;
+    line-height: 0;
+    padding-left: 1em;
+    padding-right: 1em;
+    box-sizing: border-box;
+
+    margin-left: 8pt;
+    margin-right: 8pt;
+
+    text-decoration: none;
+
+    color: black;
+
+    transition: scale 0.2s, background-color 0.2s, color 0.2s, border-color 0.2s, border 0.2s;
+}
+
+
+#headerBtnCurrentlySelected {
+    border: solid;
+    border-width: 1.5px;
+    border-color: black;
+    background-color: white;
+}
+
+
+#headerLogo {
+    width: 250px;
+    margin-left: 8pt;
+    margin-right: 8pt;
+    transition: width 0.3s, scale 0.3s;
+}
+
+.banner {
+    /* margin-top: 120pt; */
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+
+    height: 750px;
+    align-items: center;
+}
+
+.bannerAndHeader {
+    background-image: url(img/homepage.webp);
+    background-size: cover;
+    top: 0;
+}
+
+.bannerHeaderText {
+    max-width: 400px;
+    text-wrap: balance;
+
+    text-align: right;
+}
+
+.ctaButton {
+    border-radius: 50px;
+    font-size: 1.5em;
+    line-height: 0;
+
+    padding: 2em;
+
+    text-align: center;
+
+    box-sizing: border-box;
+
+    border: solid;
+    border-width: 1.5px;
+    border-color: black;
+    background-color: white;
+
+    color: black;
+    text-decoration: none;
+
+    max-width: 300px;
+
+    transition: scale 0.2s, background-color 0.2s, color 0.2s, border-color 0.2s, border 0.2s;
+}
+
+#bannerTextAndCTA {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+
+    margin-right: 120px;
+    align-items: end;
+    margin-top: 60pt;
+}
+
+
+.ctaButton:hover,
+.headerBtn:hover {
+    background-color: black !important;
+    color: white;
+    /* scale: 1.1; */
+}
+
+.ctaButton:active,
+.headerBtn:active {
+    background-color: white !important;
+    color: black;
+
+    /* scale: 0.95; */
+}
+
+.section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: calc(100% - 88pt);
+    margin-left: 44pt;
+    margin-right: 44pt;
+    box-sizing: border-box;
+}
+
+#section1 {
+    margin-top: 44pt;
+}
+
+#section1SideBySide {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.imageBioStack {
+    display: flex;
+    flex-direction: row;
+
+    /* max-width: 500px; */
+    /* min-width: 250px; */
+    margin-left: 16pt;
+    gap: 16pt;
+    /* flex-wrap: wrap; */
+}
+
+.sectionHeader {
+    padding: 0;
+    margin: 0;
+}
+
+.description {
+    max-width: 800px;
+
+    margin-right: 16pt;
+}
+
+.imageBio {
+    display: flex;
+    flex-direction: column;
+}
+
+
+@media (max-width: 1350px) {
+    .imageBioStack {
+      flex-direction: column;
+    }
+    .bioImage {
+        width: 400px
+    }
+}
+
+@media (max-width: 850px) {
+      .imageBioStack {
+       flex-direction: column;
+    }
+    .bioImage {
+        width: 200px
+    }
+}
+
+@media (max-width: 500px) {
+    #section1SideBySide {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bioImage {
+        width: 100%;
+    }
+}
+
+.bioImage {
+    max-width: 400px;
+    min-width: 200px;
+}
+
+.imageBioText {
+    font-size: 1em;
+}
+
+.contactButtons {
+    display: flex;
+    flex-direction: row;
+    margin-top: 24pt;
+    gap: 16pt;
+}
+footer {
+    height: 120pt;
+}
