@@ -31,7 +31,7 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     height: 120pt;
     background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
     position: fixed;
@@ -40,6 +40,26 @@ header {
     width: 100vw;
 
     transition: background-color 0.2s, height 0.3s;
+}
+
+.headerLinks{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 120pt;
+    /* background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0)); */
+    /* position: fixed; */
+    top: 0;
+    max-width: 1000px;
+    min-width: 400px;
+    width: 100%;
+
+    margin-right: 40pt;
+
+    /* width: 100vw; */
+
+    /* transition: background-color 0.2s, height 0.3s; */
 }
 
 .headerBtn {
@@ -71,8 +91,8 @@ header {
 
 #headerLogo {
     width: 250px;
-    margin-left: 8pt;
-    margin-right: 8pt;
+    margin-left: 40pt;
+    margin-right: 48pt;
     transition: width 0.3s, scale 0.3s;
 }
 
@@ -85,6 +105,7 @@ header {
 
     height: 750px;
     align-items: center;
+    /* background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 27%); */
 }
 
 .bannerAndHeader {
@@ -124,6 +145,32 @@ header {
     transition: scale 0.2s, background-color 0.2s, color 0.2s, border-color 0.2s, border 0.2s;
 }
 
+.ctaButtonLong {
+    border-radius: 50px;
+    font-size: 1.5em;
+    line-height: 0;
+
+    padding: 2em;
+
+    height: 60pt;
+
+    text-align: center;
+
+    box-sizing: border-box;
+
+    border: solid;
+    border-width: 1.5px;
+    border-color: black;
+    background-color: white;
+
+    color: black;
+    text-decoration: none;
+
+    /* max-width: 300px; */
+
+    transition: scale 0.2s, background-color 0.2s, color 0.2s, border-color 0.2s, border 0.2s;
+}
+
 #bannerTextAndCTA {
     display: flex;
     flex-direction: column;
@@ -159,10 +206,25 @@ header {
     margin-left: 44pt;
     margin-right: 44pt;
     box-sizing: border-box;
+    margin-top: 44pt;
+    margin-bottom: 44pt;
+
 }
 
-#section1 {
+
+.servicesSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: calc(100% - 88pt);
+    margin-left: 44pt;
+    margin-right: 44pt;
+    box-sizing: border-box;
     margin-top: 44pt;
+    margin-bottom: 44pt;
+
+    gap: 16pt;
 }
 
 #section1SideBySide {
@@ -170,6 +232,8 @@ header {
     flex-direction: row;
     justify-content: space-between;
 }
+
+
 
 .imageBioStack {
     display: flex;
@@ -193,6 +257,21 @@ header {
     margin-right: 16pt;
 }
 
+
+.servicesDescription {
+    max-width: 800px;
+
+    /* margin-right: 16pt; */
+    text-wrap: balance;
+}
+
+.servicesSectionImage {
+    aspect-ratio: 4/3;
+    max-width: 800px;
+    width: 50%;
+}
+
+
 .imageBio {
     display: flex;
     flex-direction: column;
@@ -201,17 +280,19 @@ header {
 
 @media (max-width: 1350px) {
     .imageBioStack {
-      flex-direction: column;
+        flex-direction: column;
     }
+
     .bioImage {
         width: 400px
     }
 }
 
 @media (max-width: 850px) {
-      .imageBioStack {
-       flex-direction: column;
+    .imageBioStack {
+        flex-direction: column;
     }
+
     .bioImage {
         width: 200px
     }
@@ -244,6 +325,27 @@ header {
     margin-top: 24pt;
     gap: 16pt;
 }
+
+.servicesSectionText {
+    display: flex;
+    flex-direction: column;
+    /* margin-top: 24pt; */
+    /* gap: 16pt; */
+    box-sizing: border-box;
+    max-width: 800px;
+}
+
 footer {
-    height: 120pt;
+    height: 60pt;
+}
+
+.bigSpacer {
+    height: 100pt;
+}
+
+#movingHeader {
+     view-transition-name: movingHeader;
+}
+@view-transition {
+    navigation: auto;
 }
