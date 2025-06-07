@@ -33,16 +33,16 @@ header {
     align-items: center;
     justify-content: space-between;
     height: 120pt;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
     position: fixed;
     top: 0;
 
     width: 100vw;
 
-    transition: background-color 0.2s, height 0.3s;
+    transition: background-color 0.2s, height 0.3s, background-image 0.3s;
 }
 
-.headerLinks{
+.headerLinks {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -75,7 +75,7 @@ header {
 
     text-decoration: none;
 
-    color: black;
+    color: white;
 
     transition: scale 0.2s, background-color 0.2s, color 0.2s, border-color 0.2s, border 0.2s;
 }
@@ -86,6 +86,7 @@ header {
     border-width: 1.5px;
     border-color: black;
     background-color: white;
+    color: black;
 }
 
 
@@ -94,6 +95,7 @@ header {
     margin-left: 40pt;
     margin-right: 48pt;
     transition: width 0.3s, scale 0.3s;
+    filter: invert(100%);
 }
 
 .banner {
@@ -103,22 +105,20 @@ header {
     flex-direction: row;
     justify-content: end;
 
-    height: 750px;
+    height: 800px;
     align-items: center;
     /* background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 27%); */
 }
 
-.bannerAndHeader {
-    background-image: url(img/homepage.webp);
-    background-size: cover;
-    top: 0;
-}
+
 
 .bannerHeaderText {
     max-width: 400px;
     text-wrap: balance;
 
     text-align: right;
+    color: white;
+
 }
 
 .ctaButton {
@@ -179,6 +179,7 @@ header {
     margin-right: 120px;
     align-items: end;
     margin-top: 60pt;
+
 }
 
 
@@ -344,8 +345,81 @@ footer {
 }
 
 #movingHeader {
-     view-transition-name: movingHeader;
+    view-transition-name: movingHeader;
 }
+
+
 @view-transition {
     navigation: auto;
+}
+
+
+
+.bannerAndHeader {
+    background-image: url(img/banner-XL.webp);
+    background-size: cover;
+
+    top: 0;
+}
+
+@media (max-width: 2200px) {
+    .bannerAndHeader {
+        background-image: url(img/banner-L.webp);
+        background-size: cover;
+    }
+}
+
+@media (max-width: 1400px) {
+    .bannerAndHeader {
+        background-image: url(img/banner-M.webp);
+        background-size: cover;
+    }
+
+    .bannerHeaderText {
+        font-size: 2.25em;
+    }
+}
+
+@media (max-width: 1000px) {
+    .bannerAndHeader {
+        background-image: url(img/banner-S.webp);
+        background-size: cover;
+    }
+
+    .bannerHeaderText {
+        font-size: 1.75em;
+    }
+}
+
+@media (max-width: 600px) {
+    .bannerAndHeader {
+        background-image: url(img/banner-P.webp);
+        background-size: cover;
+    }
+
+    .bannerHeaderText {
+        font-size: 1.5em;
+        text-align: left;
+    }
+
+    #bannerTextAndCTA {
+        margin-right: 22pt;
+        margin-left: 22pt;
+        align-items: start;
+        margin-bottom: 16pt;
+        width: 100%;
+
+    }
+
+    .ctaButton {
+        max-width: 100%;
+        width: 100%;
+        /* padding: 1em; */
+    }
+
+    #banner {
+        height: 100vh;
+        align-items: end;
+    }
+
 }
