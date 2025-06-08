@@ -55,6 +55,8 @@ h1 {
     position: fixed;
     top: 0;
 
+    background-color: white;
+
     width: 100vw;
     z-index: 100000;
 
@@ -163,6 +165,19 @@ h1 {
 }
 
 
+#bannerMoving {
+    /* margin-top: 120pt; */
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+
+    height: 800px;
+    align-items: center;
+    /* background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 27%); */
+}
+
+
 
 .bannerHeaderText {
     max-width: 400px;
@@ -171,6 +186,22 @@ h1 {
     text-align: right;
     color: white;
 
+}
+
+#bannerHeaderTextMoving {
+    text-align: left !important;
+    max-width: 800px;
+}
+
+.bannerTitleText {
+    font-family: "Shippori Mincho", serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 3.25em;
+
+    color: white;
+
+    margin-bottom: 16pt;
 }
 
 .ctaButton {
@@ -236,10 +267,24 @@ h1 {
 }
 
 
+#bannerTextAndCTAMoving {
+    display: flex;
+    flex-direction: column;
+    justify-content: start !important;
+
+    margin-right: 0 !important;
+    margin-left: 120px !important;
+    align-items: start !important;
+    margin-top: 60pt;
+
+    background-position: center;
+}
+
+
 .ctaButton:hover,
 .headerBtn:hover {
     background-color: black !important;
-    color: white;
+    color: whit !important;
     /* scale: 1.1; */
 }
 
@@ -269,7 +314,7 @@ h1 {
 .servicesSection {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
 
     width: calc(100% - 88pt);
     margin-left: 44pt;
@@ -279,6 +324,18 @@ h1 {
     margin-bottom: 44pt;
 
     gap: 32pt;
+}
+
+@media (max-width: 1200px) {
+    .servicesSection {
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;;
+    }
+
+    .servicesSectionImage {
+        max-width: 100%;
+    }
 }
 
 #section1SideBySide {
@@ -463,22 +520,29 @@ footer {
     transform: translateY(0) rotate(0deg);
 }
 
-.bannerAndHeader {
+#bannerAndHeader {
     background-image: url(img/banner-XL.webp);
     background-size: cover;
 
     top: 0;
 }
 
+#bannerAndHeaderMoving {
+    background-image: url(img/moving-banner-XL.webp);
+    background-size: cover;
+
+    top: 0;
+}
+
 @media (max-width: 2200px) {
-    .bannerAndHeader {
+    #bannerAndHeader {
         background-image: url(img/banner-L.webp);
         background-size: cover;
     }
 }
 
 @media (max-width: 1400px) {
-    .bannerAndHeader {
+    #bannerAndHeader {
         background-image: url(img/banner-M.webp);
         background-size: cover;
     }
@@ -489,7 +553,7 @@ footer {
 }
 
 @media (max-width: 1000px) {
-    .bannerAndHeader {
+    #bannerAndHeader {
         background-image: url(img/banner-S.webp);
         background-size: cover;
     }
@@ -500,7 +564,7 @@ footer {
 }
 
 @media (max-width: 600px) {
-    .bannerAndHeader {
+    #bannerAndHeader {
         background-image: url(img/banner-P.webp);
         background-size: cover;
     }
@@ -520,6 +584,18 @@ footer {
 
     }
 
+    #bannerTextAndCTAMoving {
+        margin-right: 22pt;
+        margin-left: 22pt;
+        align-items: start;
+        margin-bottom: 16pt;
+        width: 100%;
+        background-position: center;
+
+    }
+
+
+
     .ctaButton {
         max-width: 100%;
         width: 100%;
@@ -536,9 +612,10 @@ footer {
     }
 
     #headerLogo {
-        width: 140px;
+        max-width: 200px;
         margin-left: 16pt;
         margin-right: 16pt;
+        min-width: 120px;
     }
 
 }
