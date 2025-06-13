@@ -89,10 +89,11 @@
 
 
 
-    <form class="quoteContent" id="servicesSection4">
+    <!-- <form class="quoteContent" id="servicesSection4"> -->
+        <div class="bandaid">
 
-        <div class="quoteHeader">
-            <h1 class="quoteHeaderText">Get your free quote</h1>
+            <div class="quoteHeader">
+                <h1 class="quoteHeaderText">Get your free quote</h1>
 
         </div>
 
@@ -108,53 +109,29 @@
         <fieldset>
             <legend>We can only move inside Oregon at this time.</legend>
 
-            <div id="checkbocxAndLabel">
-                <input type="checkbox" id="scales" name="scales" class="checkbox" unchecked />
-                <label for="scales" id="insideOregonCheckLabel">I'm only moving inside Oregon</label>
-            </div>
+                <div id="checkbocxAndLabel">
+                    <input type="checkbox" id="scales" name="scales" class="checkbox" unchecked />
+                    <label for="scales" id="insideOregonCheckLabel">I'm only moving inside Oregon</label>
+                </div>
 
-        </fieldset>
-
-
-
-        <input type="text" id="quoteStartLocation" placeholder="Starting Address" class="quoteInput"
-            aria-required="true">
-
-        <input type="text" id="quoteEndLocation" placeholder="Final Location" class="quoteInput">
-
-
-
-        <button id="quoteBtn" class="quoteBtn ctaButton" onclick="getQuote()">
-            <p class="quoteBtnText">Get Your Quote</p>
-        </button>
-        <div id="map"></div>
-
+            </fieldset>
+            <select name="truck size" id="truck-selector">
+                <option value="1">Small apartment, Truck dimensions (9'11" x 6'4" x 6'2")</option>
+                <option value="2">Large apartment/small home Truck dimensions (15' x 7'8" x 7'2")</option>
+                <option value="3">Mid sized house Truck dimensions (19'6" x 7'8" x 7'2")</option>
+                <option value="4">Large house (26'2" x 8'2" x 8'3")</option>
+            </select>
+            
+            <button id="quoteBtn" class="quoteBtn ctaButton" onClick="getQuote()">
+                <p class="quoteBtnText">Get Your Quote</p>
+            </button>
+            <p>Distance: <span id="distance"></span></p>
+            <p>Total Time: <span id="time"></span></p>
+            <p>Estimated Cost: <span id="cost"></span><sub><i>Actual cost may vary.</i></sub></p>
+            <div id="map"></div>
+            
         </div>
-
-
-        <fieldset>
-            <legend>We can only move inside Oregon at this time.</legend>
-
-            <div id="checkbocxAndLabel">
-                <input type="checkbox" id="scales" name="scales" class="checkbox" unchecked />
-                <label for="scales" id="insideOregonCheckLabel">I'm only moving inside Oregon</label>
-            </div>
-
-        </fieldset>
-
-
-
-        <input type="text" id="quoteStartLocation" placeholder="Starting Address" class="quoteInput"
-            aria-required="true">
-
-        <input type="text" id="quoteEndLocation" placeholder="Final Location" class="quoteInput">
-
-        <button id="quoteBtn" class="quoteBtn ctaButton" onclick="getQuote()" required>
-            <p class="quoteBtnText">Get Your Quote</p>
-        </button>
-
-    </form>
-
+    <!-- </form> -->
 
     <footer>
         <div class="footerContent">

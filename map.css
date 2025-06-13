@@ -66,3 +66,9 @@ input:focus::placeholder {
   width: 80vw;
   height: 50vh;
 }
+.bandaid {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin: 0 10vw;
+}
