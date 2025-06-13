@@ -61,3 +61,8 @@ input {
 input:focus::placeholder {
   color: white;
 }
+
+#map {
+  width: 80vw;
+  height: 50vh;
+}
