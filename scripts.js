@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var bannerMoving = document.getElementById('bannerAndHeaderMoving');
 
     var headerBtn1 = document.getElementById('headerBtn1');
-    var headerBtn2 = document.getElementById('headerBtn2');
+    // var headerBtn2 = document.getElementById('headerBtn2');
     var headerBtn3 = document.getElementById('headerBtn3');
     var menuIcon = document.querySelector('.menu-icon');
 
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
                 if (headerBtn1 !== null) {
                     headerBtn1.style.color = 'black';
-                    headerBtn2.style.color = 'black';
+                    // headerBtn2.style.color = 'black';
                     headerBtn3.style.color = 'black';
                 }
                 if (menuIcon !== null) {
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
                 if (headerBtn1 !== null) {
                     headerBtn1.style.color = 'white';
-                    headerBtn2.style.color = 'white';
+                    // headerBtn2.style.color = 'white';
                     headerBtn3.style.color = 'white';
                 }
                 if (menuIcon !== null) {
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (headerBtn1 !== null) {
                     headerBtn1.style.color = 'black';
-                    headerBtn2.style.color = 'black';
+                    // headerBtn2.style.color = 'black';
                     headerBtn3.style.color = 'black';
                 }
                 menuIcon.style.filter = 'invert(0)';
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
                 if (headerBtn1 !== null) {
                     headerBtn1.style.color = 'white';
-                    headerBtn2.style.color = 'white';
+                    // headerBtn2.style.color = 'white';
                     headerBtn3.style.color = 'white';
                 }
                 menuIcon.style.filter = 'invert(1)';

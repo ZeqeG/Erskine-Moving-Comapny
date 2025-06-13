@@ -11,6 +11,17 @@ h1 {
     font-family: "Shippori Mincho", serif;
 }
 
+#contactHeader {
+    font-weight: 800;
+    font-style: normal;
+    font-size: 3.25em;
+   
+}
+
+* {
+     scroll-behavior: smooth
+}
+
 p {
     font-weight: 400;
     font-style: normal;
@@ -87,7 +98,7 @@ h1 {
     height: 120pt;
 
     top: 0;
-    max-width: 1000px;
+    max-width: 600px;
     min-width: 400px;
     width: 100%;
 
@@ -850,7 +861,7 @@ footer {
 
     }
 
-     #bannerTextAndCTAMovingDeliveries {
+    #bannerTextAndCTAMovingDeliveries {
         margin-right: 22pt;
         margin-left: 22pt;
         align-items: start;
