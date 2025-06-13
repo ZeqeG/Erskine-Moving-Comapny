@@ -10,12 +10,13 @@ const costEl = document.getElementById("cost");
 function getQuote() {
   responseEl.style.display = "none"
   errorEl.innerText = '';
-  if (startInput.value !== undefined && endInput.value !== undefined) {
+  var orginRes = startInput.value;
+  var destinationRes = endInput.value;
+  // console.log('check 1 ' + JSON.stringify(orginRes) + JSON.stringify(destinationRes) + orginRes + destinationRes);
+  if (orginRes !== undefined && destinationRes !== undefined) {
     // console.log(document.getElementById("scales").checked)
     if (document.getElementById("scales").checked) {
       // console.log(document.getElementById("quoteStartLocation").value);
-      let orginRes = startInput.value;
-      let destinationRes = endInput.value;
       origin1 = orginRes.formattedAddress;
       destination1 = destinationRes.formattedAddress;
       // console.log(origin1 + ', ' + destination1);
@@ -54,7 +55,7 @@ function getQuote() {
       errorEl.innerText = 'Please confirm addresses are within Oregon.';
     }
   } else {
-    console.log('no input');
+    console.log('no input' + JSON.stringify(orginRes) + JSON.stringify(destinationRes));
     errorEl.innerText = 'Please fill both address feilds.';
   }
 }
