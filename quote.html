@@ -81,22 +81,24 @@
     <div class="medSpacer">
     </div>
 
-    <div class="quoteContent" id="servicesSection4">
+    <form class="quoteContent" id="servicesSection4">
         <div class="quoteHeader">
             <h1 class="quoteHeaderText">Get your free quote</h1>
 
         </div>
 
-        <input type="text" id="quoteName" placeholder="First and Last Name" class="quoteInput">
-        <input type="email" id="quoteEmail" placeholder="Email Address" class="quoteInput">
-        <input type="tel" id="quotePhone" placeholder="Phone Number" class="quoteInput">
+        <input type="text" id="quoteName" placeholder="First and Last Name" class="quoteInput" required>
+        <input type="email" id="quoteEmail" placeholder="Email Address" class="quoteInput" required>
+        
+        <input type="tel" id="quotePhone" placeholder="Phone Number" class="quoteInput" required>
 
-        <input type="date" id="quoteDate" placeholder="Estimated Moving Date" class="quoteInput">
+        <fieldset>
+            <legend>Estimated Moving Date</legend>
 
-        <a href="quoteMap.html" class="ctaButton">
-            <p class="quoteBtnText">Continue</p>
-        </a>
-    </div>
+            <input type="date" id="quoteDate" placeholder="Estimated Moving Date" class="dateInput" required>
+        </fieldset>
+        <input type="submit" class="ctaButton" id="submitBtn" label="Continue">
+    </form>
 
 
     <footer>
