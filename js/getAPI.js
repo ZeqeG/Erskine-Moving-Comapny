@@ -11,34 +11,34 @@ function getQuote() {
   responseEl.style.display = "none"
   errorEl.innerText = '';
   if (startInput.value !== undefined && endInput.value !== undefined) {
-    console.log(document.getElementById("scales").checked)
+    // console.log(document.getElementById("scales").checked)
     if (document.getElementById("scales").checked) {
       // console.log(document.getElementById("quoteStartLocation").value);
       let orginRes = startInput.value;
       let destinationRes = endInput.value;
       origin1 = orginRes.formattedAddress;
       destination1 = destinationRes.formattedAddress;
-      console.log(origin1 + ', ' + destination1);
-      console.log(JSON.stringify(document.getElementById("quoteStartLocation").value.addressComponents));
+      // console.log(origin1 + ', ' + destination1);
+      // console.log(JSON.stringify(document.getElementById("quoteStartLocation").value.addressComponents));
       // console.log(document.getElementById("quoteStartLocation").value.addressComponents[0].types);
       let inOregon = 0;
       for (i = 0; i < orginRes.addressComponents.length; i++) {
         if (orginRes.addressComponents[i].types[0] == "administrative_area_level_1") {
           if (orginRes.addressComponents[i].longText == "Oregon") {
-            console.log('Orgin Oregon');
+            // console.log('Orgin in Oregon');
             inOregon++;
           } else {
-            console.log('Orgin not Oregon');
+            console.log('Orgin not in Oregon');
           }
         }
       }
       for (i = 0; i < destinationRes.addressComponents.length; i++) {
         if (destinationRes.addressComponents[i].types[0] == "administrative_area_level_1") {
           if (destinationRes.addressComponents[i].longText == "Oregon") {
-            console.log('Destination Oregon');
+            // console.log('Destination in Oregon');
             inOregon++;
           } else {
-            console.log('Destination not Oregon');
+            console.log('Destination not in Oregon');
           }
         }
       }
@@ -98,27 +98,22 @@ function initMap() {
     const truckType = document.getElementById("truck-selector").value;
     var truckCost = 0;
     var truckTime = 0;
-    console.log(truckType);
     switch (truckType) {
       case '1':
         truckCost = 11300;
         truckTime = 180;
-        console.log('truck 1 ' + truckCost + ' ' + truckTime);
         break;
       case '2':
         truckCost = 11900;
         truckTime = 270;
-        console.log('truck 2 ' + truckCost + ' ' + truckTime);
         break;
       case '3':
         truckCost = 14800;
         truckTime = 360;
-        console.log('truck 3 ' + truckCost + ' ' + truckTime);
         break;
       case '4':
         truckCost = 17800;
         truckTime = 540;
-        console.log('truck 4 ' + truckCost + ' ' + truckTime);
         break;
     }
     let timeMinutes = response.rows[0].elements[0].duration.value / 60 + truckTime;
