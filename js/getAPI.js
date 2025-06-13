@@ -1,5 +1,5 @@
-var origin1 = "3620 SE 62nd Ave. Portland";
-var destination1 = "1431 NE 21st, Portland";
+var origin1 = "";
+var destination1 = "";
 function getQuote() {
   origin1 = document.getElementById("quoteStartLocation").value.formattedAddress;
   destination1 = document.getElementById("quoteEndLocation").value.formattedAddress;
