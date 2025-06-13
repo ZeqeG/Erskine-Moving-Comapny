@@ -82,23 +82,24 @@
     <div class="medSpacer">
     </div>
 
-    <form class="quoteContent" id="servicesSection4">
+    <form class="quoteContent" id="servicesSection4" method="POST" action="https://script.google.com/macros/s/AKfycbz6K2V2spF1f1V8K80Y0k4E0d1-HCk6gF8AFpOmZ51MA_0kcqyKZARu-ks374Riel5U/exec">
         <div class="quoteHeader">
             <h1 class="quoteHeaderText">Get your free quote</h1>
+            <p style="color: red !important;">All fields are required.</p>
 
         </div>
 
-        <input type="text" id="quoteName" placeholder="First and Last Name" class="quoteInput" required>
-        <input type="email" id="quoteEmail" placeholder="Email Address" class="quoteInput" required>
+        <input type="text" name="Name" id="quoteName" placeholder="First and Last Name" class="quoteInput" required>
+        <input type="email" name="Email" id="quoteEmail" placeholder="Email Address" class="quoteInput" required>
 
-        <input type="tel" id="quotePhone" placeholder="Phone Number" class="quoteInput" required>
+        <input type="tel" name="Phone" id="quotePhone" placeholder="Phone Number" class="quoteInput" required>
 
         <fieldset>
             <legend>Estimated Moving Date</legend>
 
-            <input type="date" id="quoteDate" placeholder="Estimated Moving Date" class="dateInput" required>
+            <input type="date" name="Date" id="quoteDate" placeholder="Estimated Moving Date" class="dateInput" required>
         </fieldset>
-        <input type="submit" class="ctaButton" id="submitBtn" label="Continue">
+        <input type="submit" class="ctaButton" id="submitBtn" label="Continue" value="Continue">
     </form>
 
 

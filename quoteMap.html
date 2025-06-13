@@ -16,11 +16,9 @@
     <script src="scripts.js" defer></script>
     <script src="menu.js" defer></script>
     <script src="/js/getAPI.js" defer></script>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYAQh3X8os5p2Y3mHb3q7M8JxKvDoD418"
-      defer
-    ></script>
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYAQh3X8os5p2Y3mHb3q7M8JxKvDoD418" defer></script>
+    <script type="module"
+        src="https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js"></script>
 
 </head>
 
@@ -96,19 +94,17 @@
         <div class="quoteHeader">
             <h1 class="quoteHeaderText">Get your free quote</h1>
 
-            </div>
+        </div>
 
-            <gmpx-api-loader
-                key="AIzaSyDYAQh3X8os5p2Y3mHb3q7M8JxKvDoD418"
-                solution-channel="GMP_CCS_autocomplete_v5">
-            </gmpx-api-loader>
-            <gmpx-place-picker id="quoteStartLocation" for-map="map" placeholder="Starting Address"></gmpx-place-picker>
+        <gmpx-api-loader key="AIzaSyDYAQh3X8os5p2Y3mHb3q7M8JxKvDoD418" solution-channel="GMP_CCS_autocomplete_v5">
+        </gmpx-api-loader>
+        <gmpx-place-picker id="quoteStartLocation" for-map="map" placeholder="Starting Address"></gmpx-place-picker>
 
-            <!-- <input type="text" id="quoteStartLocation" placeholder="Starting Address" class="quoteInput"> -->
+        <!-- <input type="text" id="quoteStartLocation" placeholder="Starting Address" class="quoteInput"> -->
 
-            <gmpx-place-picker id="quoteEndLocation" for-map="map" placeholder="Final Location"></gmpx-place-picker>
+        <gmpx-place-picker id="quoteEndLocation" for-map="map" placeholder="Final Location"></gmpx-place-picker>
 
-            <!-- <input type="text" id="quoteEndLocation" placeholder="Final Location" class="quoteInput"> -->
+        <!-- <input type="text" id="quoteEndLocation" placeholder="Final Location" class="quoteInput"> -->
         <fieldset>
             <legend>We can only move inside Oregon at this time.</legend>
 
@@ -128,10 +124,10 @@
 
 
 
-            <button id="quoteBtn" class="quoteBtn ctaButton" onclick="getQuote()">
-                <p class="quoteBtnText">Get Your Quote</p>
-            </button>
-            <div id="map"></div>
+        <button id="quoteBtn" class="quoteBtn ctaButton" onclick="getQuote()">
+            <p class="quoteBtnText">Get Your Quote</p>
+        </button>
+        <div id="map"></div>
 
         </div>
 
