@@ -79,7 +79,7 @@ function initMap() {
         console.log('truck 4 ' + truckCost + ' ' + truckTime);
         break;
     }
-    let timeMinutes = response.rows[0].elements[0].duration.value / 60 + truckTime
+    let timeMinutes = response.rows[0].elements[0].duration.value / 60 + truckTime;
     timeEl.innerText = Math.floor(timeMinutes / 60) + 'h' + Math.floor(timeMinutes % 60) + 'm';
     distanceEl.innerText = response.rows[0].elements[0].distance.text;
     console.log('truckcost' + truckCost);
