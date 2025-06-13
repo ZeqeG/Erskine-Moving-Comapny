@@ -15,14 +15,14 @@ p {
 
 h2 {
     font-family: "Shippori Mincho", serif;
-    font-weight: 600;
+    font-weight: 500;
     font-style: normal;
     font-size: 2.25em;
 }
 
 h1 {
     font-family: "Shippori Mincho", serif;
-    font-weight: 700;
+    font-weight: 800;
     font-style: normal;
     font-size: 3.25em;
 }
@@ -68,6 +68,7 @@ h1 {
 #topHeaderTransparent .headerBtn {
     color: black !important;
 }
+
 #topHeaderTransparent #headerLogo {
     filter: invert(0) !important;
 }
@@ -206,7 +207,7 @@ h1 {
 }
 
 .ctaButton {
-    border-radius: 50px;
+    border-radius: 500px;
     font-size: 1.5em;
     line-height: 0;
 
@@ -224,7 +225,7 @@ h1 {
     color: black;
     text-decoration: none;
 
-    max-width: 300px;
+    /* max-width: 300px; */
 
     transition: scale 0.2s, background-color 0.2s, color 0.2s, border-color 0.2s, border 0.2s;
 }
@@ -283,14 +284,16 @@ h1 {
 
 
 .ctaButton:hover,
-.headerBtn:hover {
+.headerBtn:hover,
+.ctaButtonLong:hover {
     background-color: black !important;
-    color: whit !important;
+    color: white !important;
     /* scale: 1.1; */
 }
 
 .ctaButton:active,
-.headerBtn:active {
+.headerBtn:active,
+.ctaButtonLong:active {
     background-color: white !important;
     color: black;
 
@@ -327,11 +330,71 @@ h1 {
     gap: 32pt;
 }
 
+.movingSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: calc(100% - 88pt);
+    margin-left: 44pt;
+    margin-right: 44pt;
+    box-sizing: border-box;
+    /* margin-top: 44pt; */
+    margin-bottom: 44pt;
+
+    gap: 32pt;
+}
+
+
+.quoteContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: calc(100% - 88pt);
+    margin-left: 44pt;
+    margin-right: 44pt;
+    box-sizing: border-box;
+    margin-top: 44pt;
+    margin-bottom: 44pt;
+
+    gap: 16pt;
+    max-width: 1000px;
+}
+
+.quoteInput {
+    border-radius: 100px;
+    font-size: 1.5em;
+
+    padding: 1.5em;
+
+    text-align: left;
+
+    box-sizing: border-box;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-style: normal;
+    box-sizing: border-box;
+
+    border: solid;
+    border-width: 1.5px;
+    border-color: black;
+    background-color: white;
+
+
+    color: black;
+    text-decoration: none;
+
+
+    transition: scale 0.2s, background-color 0.2s, color 0.2s, border-color 0.2s, border 0.2s;
+}
+
 @media (max-width: 1200px) {
     .servicesSection {
         flex-direction: column-reverse;
         align-items: center;
-        justify-content: center;;
+        justify-content: center;
+        ;
     }
 
     .servicesSectionImage {
@@ -367,6 +430,14 @@ h1 {
     max-width: 800px;
 
     margin-right: 16pt;
+}
+
+.longDescription {
+    max-width: 2400px;
+    /* margin-right: 16pt; */
+    text-wrap: balance;
+    
+
 }
 
 
@@ -447,12 +518,26 @@ h1 {
     max-width: 600px;
 }
 
+
+.movingSectionText {
+    display: flex;
+    flex-direction: column;
+    /* margin-top: 24pt; */
+    /* gap: 16pt; */
+    box-sizing: border-box;
+    max-width: 1200px;
+}
+
 footer {
     height: 60pt;
 }
 
 .bigSpacer {
     height: 100pt;
+}
+.medSpacer 
+{
+    height: 60pt;
 }
 
 #movingHeader {
@@ -690,7 +775,7 @@ footer {
 
 .servicesLayout {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);  
+    grid-template-columns: repeat(2, 1fr);
 }
 
 @media (max-width: 1200px) {
