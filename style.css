@@ -674,6 +674,7 @@ legend {
     flex-direction: row;
     margin-top: 24pt;
     gap: 16pt;
+    flex-wrap: wrap;
 }
 
 .servicesSectionText {
@@ -876,6 +877,7 @@ footer {
     .ctaButton {
         max-width: 100%;
         width: 100%;
+        margin-bottom: 1em;
         /* padding: 1em; */
     }
 
