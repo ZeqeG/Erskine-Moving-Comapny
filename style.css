@@ -5,23 +5,25 @@ body {
     margin: 0
 }
 
+p,
+h2,
+h1 {
+    font-family: "Shippori Mincho", serif;
+}
 
 p {
-    font-family: "Shippori Mincho", serif;
     font-weight: 400;
     font-style: normal;
     font-size: 1.5em;
 }
 
 h2 {
-    font-family: "Shippori Mincho", serif;
     font-weight: 500;
     font-style: normal;
     font-size: 2.25em;
 }
 
 h1 {
-    font-family: "Shippori Mincho", serif;
     font-weight: 800;
     font-style: normal;
     font-size: 3.25em;
@@ -51,7 +53,6 @@ h1 {
     align-items: center;
     justify-content: space-between;
     height: 120pt;
-    /* background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); */
     position: fixed;
     top: 0;
 
@@ -84,18 +85,13 @@ h1 {
     align-items: center;
     justify-content: space-evenly;
     height: 120pt;
-    /* background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0)); */
-    /* position: fixed; */
+
     top: 0;
     max-width: 1000px;
     min-width: 400px;
     width: 100%;
 
     margin-right: 40pt;
-
-    /* width: 100vw; */
-
-    /* transition: background-color 0.2s, height 0.3s; */
 }
 
 .headerBtn {
@@ -154,7 +150,6 @@ h1 {
 }
 
 .banner {
-    /* margin-top: 120pt; */
     width: 100%;
     display: flex;
     max-height: 100vh;
@@ -163,12 +158,10 @@ h1 {
 
     height: 800px;
     align-items: center;
-    /* background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 27%); */
 }
 
 
 #bannerMoving {
-    /* margin-top: 120pt; */
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -176,7 +169,6 @@ h1 {
 
     height: 800px;
     align-items: center;
-    /* background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 27%); */
 }
 
 
@@ -225,8 +217,6 @@ h1 {
     color: black;
     text-decoration: none;
 
-    /* max-width: 300px; */
-
     transition: scale 0.2s, background-color 0.2s, color 0.2s, border-color 0.2s, border 0.2s;
 }
 
@@ -250,8 +240,6 @@ h1 {
 
     color: black;
     text-decoration: none;
-
-    /* max-width: 300px; */
 
     transition: scale 0.2s, background-color 0.2s, color 0.2s, border-color 0.2s, border 0.2s;
 }
@@ -339,7 +327,6 @@ h1 {
     margin-left: 44pt;
     margin-right: 44pt;
     box-sizing: border-box;
-    /* margin-top: 44pt; */
     margin-bottom: 44pt;
 
     gap: 32pt;
@@ -389,6 +376,38 @@ h1 {
     transition: scale 0.2s, background-color 0.2s, color 0.2s, border-color 0.2s, border 0.2s;
 }
 
+#insideOregonCheckLabel {
+    border-radius: 100px;
+    font-size: 1.5em;
+
+    padding: 1.5em;
+
+    text-align: left;
+
+    box-sizing: border-box;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-style: normal;
+    box-sizing: border-box;
+
+
+    color: black;
+    text-decoration: none;
+
+
+    transition: scale 0.2s, background-color 0.2s, color 0.2s, border-color 0.2s, border 0.2s;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+
 @media (max-width: 1200px) {
     .servicesSection {
         flex-direction: column-reverse;
@@ -413,12 +432,8 @@ h1 {
 .imageBioStack {
     display: flex;
     flex-direction: row;
-
-    /* max-width: 500px; */
-    /* min-width: 250px; */
     margin-left: 16pt;
     gap: 16pt;
-    /* flex-wrap: wrap; */
 }
 
 .sectionHeader {
@@ -434,15 +449,13 @@ h1 {
 
 .longDescription {
     max-width: 2400px;
-    /* margin-right: 16pt; */
     text-wrap: balance;
-    
+
 
 }
 
 .pulledDescription {
     max-width: 2400px;
-    /* margin-right: 16pt; */
     text-wrap: balance;
     border: solid;
     border-width: 1.5px;
@@ -454,6 +467,7 @@ h1 {
     padding: 32px;
     box-sizing: border-box;
 }
+
 .pulledDescription p {
     margin: 0;
 }
@@ -461,8 +475,6 @@ h1 {
 
 .servicesDescription {
     max-width: 800px;
-
-    /* margin-right: 16pt; */
     text-wrap: balance;
 }
 
@@ -553,8 +565,8 @@ footer {
 .bigSpacer {
     height: 100pt;
 }
-.medSpacer 
-{
+
+.medSpacer {
     height: 60pt;
 }
 
@@ -781,8 +793,6 @@ footer {
     width: 100vw;
     box-sizing: border-box;
 }
-
-
 
 /* Visible State */
 #mobileLinksContainer.active {

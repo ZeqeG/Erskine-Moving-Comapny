@@ -85,31 +85,42 @@
 
 
 
-        <div class="quoteContent" id="servicesSection4">
-            <div class="quoteHeader">
-                <h1 class="quoteHeaderText">Get your free quote</h1>
+    <form class="quoteContent" id="servicesSection4">
 
-            </div>
+        <div class="quoteHeader">
+            <h1 class="quoteHeaderText">Get your free quote</h1>
 
-
-            <input type="text" id="quoteStartLocation" placeholder="Starting Address" class="quoteInput">
-
-
-            <input type="text" id="quoteEndLocation" placeholder="Final Location" class="quoteInput">
-
-
-
-            <button id="quoteBtn" class="quoteBtn ctaButton" onclick="getQuote()">
-                <p class="quoteBtnText">Get Your Quote</p>
-            </button>
         </div>
 
 
+        <fieldset>
+            <legend>We can only move inside Oregon at this time.</legend>
 
-        <footer>
-            <div class="footerContent">
+            <div>
+                <input type="checkbox" id="scales" name="scales" class="checkbox" unchecked />
+                <label for="scales" id="insideOregonCheckLabel">I'm only moving inside Oregon</label>
             </div>
-        </footer>
+
+        </fieldset>
+
+
+
+        <input type="text" id="quoteStartLocation" placeholder="Starting Address" class="quoteInput"
+            aria-required="true">
+
+        <input type="text" id="quoteEndLocation" placeholder="Final Location" class="quoteInput">
+
+        <button id="quoteBtn" class="quoteBtn ctaButton" onclick="getQuote()" aria-required="true">
+            <p class="quoteBtnText">Get Your Quote</p>
+        </button>
+
+    </form>
+
+
+    <footer>
+        <div class="footerContent">
+        </div>
+    </footer>
 </body>
 
 
