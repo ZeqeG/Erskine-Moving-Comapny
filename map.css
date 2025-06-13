@@ -65,10 +65,17 @@ input:focus::placeholder {
 #map {
   width: 80vw;
   height: 50vh;
+  pointer-events: none;
 }
 .bandaid {
   display: flex;
   flex-direction: column;
   gap: 1em;
   margin: 0 10vw;
+}
+#error {
+  color: rgb(160, 9, 9);
+}
+#responses {
+  display: none;
 }

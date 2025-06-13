@@ -1,14 +1,61 @@
 var origin1 = "";
 var destination1 = "";
+const startInput = document.getElementById("quoteStartLocation");
+const endInput = document.getElementById("quoteEndLocation");
+const errorEl = document.getElementById("error");
+const responseEl = document.getElementById("responses");
+const distanceEl = document.getElementById("distance");
+const timeEl = document.getElementById("time");
+const costEl = document.getElementById("cost");
 function getQuote() {
-  if (document.getElementById("quoteStartLocation").value !== undefined && document.getElementById("quoteEndLocation").value !== undefined) {
-    console.log(document.getElementById("quoteStartLocation").value)
-    origin1 = document.getElementById("quoteStartLocation").value.formattedAddress;
-    destination1 = document.getElementById("quoteEndLocation").value.formattedAddress;
-    console.log(origin1 + ', ' + destination1);
-    initMap();
+  responseEl.style.display = "none"
+  errorEl.innerText = '';
+  if (startInput.value !== undefined && endInput.value !== undefined) {
+    console.log(document.getElementById("scales").checked)
+    if (document.getElementById("scales").checked) {
+      // console.log(document.getElementById("quoteStartLocation").value);
+      let orginRes = startInput.value;
+      let destinationRes = endInput.value;
+      origin1 = orginRes.formattedAddress;
+      destination1 = destinationRes.formattedAddress;
+      console.log(origin1 + ', ' + destination1);
+      console.log(JSON.stringify(document.getElementById("quoteStartLocation").value.addressComponents));
+      // console.log(document.getElementById("quoteStartLocation").value.addressComponents[0].types);
+      let inOregon = 0;
+      for (i = 0; i < orginRes.addressComponents.length; i++) {
+        if (orginRes.addressComponents[i].types[0] == "administrative_area_level_1") {
+          if (orginRes.addressComponents[i].longText == "Oregon") {
+            console.log('Orgin Oregon');
+            inOregon++;
+          } else {
+            console.log('Orgin not Oregon');
+          }
+        }
+      }
+      for (i = 0; i < destinationRes.addressComponents.length; i++) {
+        if (destinationRes.addressComponents[i].types[0] == "administrative_area_level_1") {
+          if (destinationRes.addressComponents[i].longText == "Oregon") {
+            console.log('Destination Oregon');
+            inOregon++;
+          } else {
+            console.log('Destination not Oregon');
+          }
+        }
+      }
+      
+      if (inOregon == 2) {
+        initMap();
+      } else {
+        console.log('address not in Oregon');
+        errorEl.innerText = 'Please enter addresses that are within Oregon.';
+      }
+    } else {
+      console.log('Oregon requirement not met');
+      errorEl.innerText = 'Please confirm addresses are within Oregon.';
+    }
   } else {
     console.log('no input');
+    errorEl.innerText = 'Please fill both address feilds.';
   }
 }
 function initMap() {
@@ -17,6 +64,7 @@ function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 55.53, lng: 9.4 },
     zoom: 10,
+    disableDefaultUI: true,
   });
   // initialize services
   const geocoder = new google.maps.Geocoder();
@@ -46,14 +94,8 @@ function initMap() {
     //   2,
     // );
 
-    // show on map
-    console.log(response.rows[0].elements[0].distance);
-    console.log(response.rows[0].elements[0].duration);
-
+    //calculate cost
     const truckType = document.getElementById("truck-selector").value;
-    const distanceEl = document.getElementById("distance");
-    const timeEl = document.getElementById("time");
-    const costEl = document.getElementById("cost");
     var truckCost = 0;
     var truckTime = 0;
     console.log(truckType);
@@ -80,15 +122,19 @@ function initMap() {
         break;
     }
     let timeMinutes = response.rows[0].elements[0].duration.value / 60 + truckTime;
-    timeEl.innerText = Math.floor(timeMinutes / 60) + 'h' + Math.floor(timeMinutes % 60) + 'm';
+    timeEl.innerText = Math.floor(timeMinutes / 60) + ' hours ' + Math.floor(Math.ceil((timeMinutes % 60) / 15) * 15) + ' mins';
     distanceEl.innerText = response.rows[0].elements[0].distance.text;
-    console.log('truckcost' + truckCost);
-    console.log('timecost' + (150 * (truckTime + response.rows[0].elements[0].duration.value / 60)));
-    console.log('distancecost' + (0.8 * response.rows[0].elements[0].distance.value * 0.06213712));
+    console.log('truckcost $' + (truckCost / 100).toLocaleString('en-US'));
+    console.log('timecost $' + ((150 * (truckTime + response.rows[0].elements[0].duration.value / 60)) / 100).toLocaleString('en-US'));
+    console.log('distancecost $' + ((0.8 * response.rows[0].elements[0].distance.value * 0.06213712) / 100).toLocaleString('en-US'));
     let cost = Math.floor(Math.ceil((10000 + truckCost + (150 * (truckTime + response.rows[0].elements[0].duration.value / 60)) + (0.8 * response.rows[0].elements[0].distance.value * 0.06213712)) / 500) * 500);
-    console.log(cost);
+    console.log('total $' + (cost / 100).toLocaleString('en-US'));
     costEl.innerText = '$' + (cost / 100).toLocaleString('en-US');
+    responseEl.style.display = "block";
 
+    // show on map
+    console.log(response.rows[0].elements[0].distance);
+    console.log(response.rows[0].elements[0].duration);
     const originList = response.originAddresses;
     const destinationList = response.destinationAddresses;
 
@@ -128,6 +174,5 @@ function deleteMarkers(markersArray) {
   for (let i = 0; i < markersArray.length; i++) {
     markersArray[i].setMap(null);
   }
-
   markersArray = [];
 }
