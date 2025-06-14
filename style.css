@@ -79,7 +79,7 @@ h1 {
 }
 
 #topHeaderTransparent .headerBtn {
-    color: black !important;
+    color: black;
 }
 
 #topHeaderTransparent #headerLogo {
