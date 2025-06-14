@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var banner = document.getElementById('bannerAndHeader');
     var bannerMoving = document.getElementById('bannerAndHeaderMoving');
+    var bannerHauling = document.getElementById('bannerAndHeaderHauling');
+    var bannerCleanouts = document.getElementById('bannerAndHeaderCleanouts');
+    var bannerDeliveries = document.getElementById('bannerAndHeaderDeliveries');
 
     var headerBtn1 = document.getElementById('headerBtn1');
     // var headerBtn2 = document.getElementById('headerBtn2');
@@ -82,6 +85,16 @@ document.addEventListener('DOMContentLoaded', function () {
             if (bannerMoving !== null) {
                 bannerMoving.style.backgroundPosition = 'center ' + (scrollPosition / 2) + 'px';
             }
+            if (bannerHauling !== null) {
+                bannerHauling.style.backgroundPosition = 'center ' + (scrollPosition / 2) + 'px';
+            }
+            if (bannerCleanouts !== null) {
+                bannerCleanouts.style.backgroundPosition = 'center ' + (scrollPosition / 2) + 'px';
+            }
+
+            if (bannerDeliveries !== null) {
+                bannerDeliveries.style.backgroundPosition = 'center ' + (scrollPosition / 2) + 'px';
+            }
 
         }
         else {
@@ -133,13 +146,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 menuIcon.style.filter = 'invert(1)';
             }
 
-            if (banner !== null) {
-                banner.style.backgroundPosition = 'center ' + (scrollPosition / 2) + 'px';
-            }
             if (bannerMoving !== null) {
                 bannerMoving.style.backgroundPosition = 'center ' + (scrollPosition / 2) + 'px';
             }
+            if (bannerHauling !== null) {
+                bannerHauling.style.backgroundPosition = 'center ' + (scrollPosition / 2) + 'px';
+            }
+            if (bannerCleanouts !== null) {
+                bannerCleanouts.style.backgroundPosition = 'center ' + (scrollPosition / 2) + 'px';
+            }
 
+            if (bannerDeliveries !== null) {
+                bannerDeliveries.style.backgroundPosition = 'center ' + (scrollPosition / 2) + 'px';
+            }
         }
     });
 });

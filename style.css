@@ -737,6 +737,7 @@ legend {
 @media (max-width: 850px) {
     .imageBioStack {
         flex-direction: column;
+        margin: 0;
     }
 
     .bioImage {
@@ -889,10 +890,19 @@ footer {
     background-size: cover;
 
     top: 0;
+    position: relative;
 }
 
 #bannerAndHeaderHauling {
     background-image: url(img/hauling.webp);
+    background-size: cover;
+
+    top: 0;
+}
+
+
+#bannerAndHeaderCleanouts {
+    background-image: url(img/cleanouts.webp);
     background-size: cover;
 
     top: 0;
