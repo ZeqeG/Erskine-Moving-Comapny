@@ -326,8 +326,8 @@ h1 {
     flex-direction: column;
     justify-content: start !important;
 
-    margin-right: 0 !important;
-    margin-left: 120px !important;
+    margin-right: 0;
+    margin-left: 120px;
     align-items: start !important;
     margin-top: 60pt;
 
