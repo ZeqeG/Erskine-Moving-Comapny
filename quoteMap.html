@@ -90,52 +90,79 @@
 
 
     <!-- <form class="quoteContent" id="servicesSection4"> -->
+    <div class="quoteMapWrapper">
         <div class="bandaid">
 
-            <div class="quoteHeader">
-                <h1 class="quoteHeaderText">Get your free quote</h1>
-
-        </div>
-
-        <gmpx-api-loader key="AIzaSyDYAQh3X8os5p2Y3mHb3q7M8JxKvDoD418" solution-channel="GMP_CCS_autocomplete_v5">
-        </gmpx-api-loader>
-
-        <p id="error"></p>
-
-        <gmpx-place-picker id="quoteStartLocation" for-map="map" placeholder="Starting Address"></gmpx-place-picker>
-
-        <!-- <input type="text" id="quoteStartLocation" placeholder="Starting Address" class="quoteInput"> -->
-
-        <gmpx-place-picker id="quoteEndLocation" for-map="map" placeholder="Destination Address"></gmpx-place-picker>
-
-        <!-- <input type="text" id="quoteEndLocation" placeholder="Final Location" class="quoteInput"> -->
-        <fieldset>
-            <legend>We can only move inside Oregon at this time.</legend>
-
-                <div id="checkbocxAndLabel">
-                    <input type="checkbox" id="scales" name="scales" class="checkbox" unchecked />
-                    <label for="scales" id="insideOregonCheckLabel">I'm only moving inside Oregon</label>
+            <div class="inputs">
+                <div class="quoteHeader">
+                    <h1 class="quoteHeaderText">Get your free quote</h1>
                 </div>
 
-            </fieldset>
-            <select name="truck size" id="truck-selector">
-                <option value="1">Small apartment, Truck dimensions (9'11" x 6'4" x 6'2")</option>
-                <option value="2">Large apartment/small home Truck dimensions (15' x 7'8" x 7'2")</option>
-                <option value="3">Mid sized house Truck dimensions (19'6" x 7'8" x 7'2")</option>
-                <option value="4">Large house (26'2" x 8'2" x 8'3")</option>
-            </select>
-            
-            <button id="quoteBtn" class="quoteBtn ctaButton" onClick="getQuote()">
-                <p class="quoteBtnText">Get Your Quote</p>
-            </button>
-            <div id="responses">
-                <p>Distance: <span id="distance"></span></p>
-                <p>Total Estimated Time: <span id="time"></span></p>
-                <p>Estimated Cost: <span id="cost"></span><sub><i>Actual cost may vary.</i></sub></p>
-                <div id="map"></div>
+                <!-- CHECKBOX  -->
+                <fieldset>
+                    <legend>We can only move inside Oregon at this time.</legend>
+
+                    <div id="checkboxAndLabel">
+                        <input type="checkbox" id="scales" name="scales" class="checkbox" unchecked />
+                        <label for="scales" id="insideOregonCheckLabel">I'm only moving inside Oregon</label>
+                    </div>
+
+                </fieldset>
+
+                <gmpx-api-loader key="AIzaSyDYAQh3X8os5p2Y3mHb3q7M8JxKvDoD418"
+                    solution-channel="GMP_CCS_autocomplete_v5">
+                </gmpx-api-loader>
+
+
+
+                <gmpx-place-picker id="quoteStartLocation" for-map="map"
+                    placeholder="Starting Address"></gmpx-place-picker>
+
+                <!-- <input type="text" id="quoteStartLocation" placeholder="Starting Address" class="quoteInput"> -->
+
+                <gmpx-place-picker id="quoteEndLocation" for-map="map"
+                    placeholder="Destination Address"></gmpx-place-picker>
+
+                <!-- <input type="text" id="quoteEndLocation" placeholder="Final Location" class="quoteInput"> -->
+
+
+
+                <!-- TRUCK SIZE PICKER -->
+                <fieldset id="dropdownFieldset">
+                    <legend>How big of a truck will your move require?</legend>
+                    <select name="truck size" id="truck-selector" class="dropdown">
+                        <option value="1">Small apartment, Truck dimensions (9'11" x 6'4" x 6'2")</option>
+                        <option value="2">Large apartment/small home, Truck dimensions (15' x 7'8" x 7'2")</option>
+                        <option value="3">Mid sized house, Truck dimensions (19'6" x 7'8" x 7'2")</option>
+                        <option value="4">Large house, (26'2" x 8'2" x 8'3")</option>
+                    </select>
+                </fieldset>
+
+                <p id="error"></p>
+
+                <!-- BUTTON  -->
+                <button id="quoteBtn" class="quoteBtn ctaButton" onClick="getQuote()">Get your quote
+                </button>
+
             </div>
-            
+
+
+
+
         </div>
+
+        <!-- RESPONSES -->
+        <div id="responses">
+            <h2>Distance:</h2>
+            <p>Distance: <span id="distance"></span></p>
+            <h2>Total Estimated Time:</h2>
+            <h2>Estimated Cost:</h2>
+            <p>Total Estimated Time: <span id="time"></span></p>
+            <p>Estimated Cost: <span id="cost"></span><sub><i>Actual cost may vary.</i></sub></p>
+            <div id="map"></div>
+        </div>
+
+    </div>
     <!-- </form> -->
 
     <footer>

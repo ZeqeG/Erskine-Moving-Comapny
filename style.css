@@ -15,11 +15,11 @@ h1 {
     font-weight: 800;
     font-style: normal;
     font-size: 3.25em;
-   
+
 }
 
 * {
-     scroll-behavior: smooth
+    scroll-behavior: smooth
 }
 
 p {
@@ -243,7 +243,8 @@ h1 {
 }
 
 
-#submitBtn {
+#submitBtn,
+#quoteBtn {
     border-radius: 500px;
     font-size: 1.5em;
     line-height: 0;
@@ -459,6 +460,44 @@ h1 {
 
 }
 
+#dropdownFieldset {
+    height: 7em;
+    align-items: center;
+    display: flex;
+ 
+}
+
+.dropdown {
+    all: unset;
+    border-radius: 100px;
+    font-size: 1.5em;
+
+    text-align: left;
+
+    padding-left: 1em;
+    padding-right: 1em;
+    box-sizing: border-box;
+    font-family: "Shippori Mincho", serif;
+    font-weight: 500;
+    font-style: normal;
+    box-sizing: border-box;
+    width: 100%;
+
+    background-color: white;
+
+    position: relative;
+    color: black;
+    text-decoration: none;
+
+       background-image: url(img/chevron.svg);
+    background-repeat: no-repeat;
+    background-position: calc(100% - 1em);
+    background-size: 32px;
+
+    transition: scale 0.2s, background-color 0.2s, color 0.2s, border-color 0.2s, border 0.2s;
+}
+
+
 #insideOregonCheckLabel {
     border-radius: 100px;
     font-size: 1.5em;
@@ -483,10 +522,15 @@ h1 {
 }
 
 :root {
-    --checkbox-border-color: #8b8c89;
-    --checkbox-checked-color: #274c77;
-    --checkbox-hover-color: #a3cef1;
-    --checkbox-disabled-bg-color: #d9d9d9;
+    --gmpx-font-family-base: font-family: "Shippori Mincho", serif !important;
+    --gmpx-font-size-base: 1.5rem;
+    --gmpx-color-surface: rgba(255, 255, 255, 0);
+    --gmpx-color-primary: rgba(0, 0, 0, 0);
+}
+
+
+#map {
+    border-radius: 32pt;
 }
 
 input[type="checkbox"] {
@@ -497,8 +541,8 @@ input[type="checkbox"] {
     padding: 0;
     border-radius: 6px;
     border: 1.5px solid black;
-    /* appearance: none; */
-    /* background-color: transparent; */
+    appearance: none;
+    background-color: transparent;
     outline: none;
     transition: outline 0.1s;
 }
@@ -510,7 +554,16 @@ input[type="checkbox"]:checked {
 
 input[type="checkbox"]:not(:disabled):checked {
     border-color: black;
-    /* background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 32 32" xml:space="preserve"><path style="fill: %23274c77" d="M11.941,28.877l-11.941-11.942l5.695-5.696l6.246,6.246l14.364-14.364L32,8.818"/></svg>'); */
+    background-image: url(img/checkmark.svg);
+    padding: 0;
+    margin: 6px;
+    border-radius: 6px;
+    background-color: black;
+}
+
+#checkboxAndLabel {
+    display: flex;
+    align-items: center;
 }
 
 fieldset {
@@ -519,6 +572,11 @@ fieldset {
     padding: .5em;
     padding-bottom: 1em;
 
+    height: 7em;
+
+    display: flex;
+    align-items: center;
+    
     text-align: left;
 
     box-sizing: border-box;
@@ -541,7 +599,8 @@ fieldset {
 }
 
 legend {
-    padding-left: 32pt;
+    margin-left: 24px;
+    background-color: white;
 }
 
 

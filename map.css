@@ -63,19 +63,84 @@ input:focus::placeholder {
 }
 
 #map {
-  width: 80vw;
+  width: 100%;
   height: 50vh;
   pointer-events: none;
 }
+
+
 .bandaid {
   display: flex;
-  flex-direction: column;
-  gap: 1em;
-  margin: 0 10vw;
+  flex-direction: row;
+  /* justify-content: space-between; */
+
+  width: 100vw;
+  /* margin-left: 44pt; */
+  /* margin-right: 44pt; */
+  box-sizing: border-box;
+
+  margin-bottom: 44pt;
+
+  gap: 16pt;
+  max-width: 1000px;
+
 }
+
+.quoteMapWrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  margin-top: 44pt;
+
+}
+
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 50vw;
+  margin-left: 44pt;
+  margin-right: 44pt;
+  box-sizing: border-box;
+
+  gap: 16pt;
+  max-width: 1000px;
+  min-width: 350px;
+}
+
+
+@media (max-width: 1110px) {
+  .bandaid {
+    width: 100vw;
+  }
+
+  .inputs {
+    width: calc(100vw - 88pt);
+  }
+
+  .quoteMapWrapper {
+    flex-direction: column;
+  }
+
+  #responses {
+    width: calc(100vw - 88pt);
+    margin-left: 44pt;
+    margin-right: 44pt;
+  }
+
+}
+
+
+
 #error {
   color: rgb(160, 9, 9);
 }
+
 #responses {
+  width: 50vw;
   display: none;
+  margin-right: 44pt;
 }
+
