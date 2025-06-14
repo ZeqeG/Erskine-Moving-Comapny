@@ -69,7 +69,7 @@ input:focus::placeholder {
 }
 
 
-.bandaid {
+.quoteMapCalc {
   display: flex;
   flex-direction: row;
   /* justify-content: space-between; */
@@ -112,7 +112,7 @@ input:focus::placeholder {
 
 
 @media (max-width: 1110px) {
-  .bandaid {
+  .quoteMapCalc {
     width: 100vw;
   }
 
