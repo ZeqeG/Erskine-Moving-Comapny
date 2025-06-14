@@ -14,45 +14,39 @@ function getQuote() {
   var destinationRes = endInput.value;
   // console.log('check 1 ' + JSON.stringify(orginRes) + JSON.stringify(destinationRes) + orginRes + destinationRes);
   if (orginRes !== undefined && destinationRes !== undefined) {
-    // console.log(document.getElementById("scales").checked)
-    if (document.getElementById("scales").checked) {
-      // console.log(document.getElementById("quoteStartLocation").value);
-      origin1 = orginRes.formattedAddress;
-      destination1 = destinationRes.formattedAddress;
-      // console.log(origin1 + ', ' + destination1);
-      // console.log(JSON.stringify(document.getElementById("quoteStartLocation").value.addressComponents));
-      // console.log(document.getElementById("quoteStartLocation").value.addressComponents[0].types);
-      let inOregon = 0;
-      for (i = 0; i < orginRes.addressComponents.length; i++) {
-        if (orginRes.addressComponents[i].types[0] == "administrative_area_level_1") {
-          if (orginRes.addressComponents[i].longText == "Oregon") {
-            // console.log('Orgin in Oregon');
-            inOregon++;
-          } else {
-            console.log('Orgin not in Oregon');
-          }
+    // console.log(document.getElementById("quoteStartLocation").value);
+    origin1 = orginRes.formattedAddress;
+    destination1 = destinationRes.formattedAddress;
+    // console.log(origin1 + ', ' + destination1);
+    // console.log(JSON.stringify(document.getElementById("quoteStartLocation").value.addressComponents));
+    // console.log(document.getElementById("quoteStartLocation").value.addressComponents[0].types);
+    let inOregon = 0;
+    for (i = 0; i < orginRes.addressComponents.length; i++) {
+      if (orginRes.addressComponents[i].types[0] == "administrative_area_level_1") {
+        if (orginRes.addressComponents[i].longText == "Oregon") {
+          // console.log('Orgin in Oregon');
+          inOregon++;
+        } else {
+          console.log('Orgin not in Oregon');
         }
       }
-      for (i = 0; i < destinationRes.addressComponents.length; i++) {
-        if (destinationRes.addressComponents[i].types[0] == "administrative_area_level_1") {
-          if (destinationRes.addressComponents[i].longText == "Oregon") {
-            // console.log('Destination in Oregon');
-            inOregon++;
-          } else {
-            console.log('Destination not in Oregon');
-          }
+    }
+    for (i = 0; i < destinationRes.addressComponents.length; i++) {
+      if (destinationRes.addressComponents[i].types[0] == "administrative_area_level_1") {
+        if (destinationRes.addressComponents[i].longText == "Oregon") {
+          // console.log('Destination in Oregon');
+          inOregon++;
+        } else {
+          console.log('Destination not in Oregon');
         }
       }
-      
-      if (inOregon == 2) {
-        initMap();
-      } else {
-        console.log('address not in Oregon');
-        errorEl.innerText = 'Please enter addresses that are within Oregon.';
-      }
+    }
+    
+    if (inOregon == 2) {
+      initMap();
     } else {
-      console.log('Oregon requirement not met');
-      errorEl.innerText = 'Please confirm addresses are within Oregon.';
+      console.log('address not in Oregon');
+      errorEl.innerText = 'Please enter addresses that are within Oregon.';
     }
   } else {
     console.log('no input' + JSON.stringify(orginRes) + JSON.stringify(destinationRes));
