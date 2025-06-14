@@ -886,7 +886,7 @@ footer {
 }
 
 #bannerAndHeaderDeliveries {
-    background-image: url(img/deliveries.webp);
+    background-image: url(img/deliveries-banner-L.webp);
     background-size: cover;
 
     top: 0;
@@ -894,7 +894,7 @@ footer {
 }
 
 #bannerAndHeaderHauling {
-    background-image: url(img/hauling.webp);
+    background-image: url(img/hauling-banner-L.webp);
     background-size: cover;
 
     top: 0;
@@ -902,7 +902,7 @@ footer {
 
 
 #bannerAndHeaderCleanouts {
-    background-image: url(img/cleanouts.webp);
+    background-image: url(img/cleanouts-banner-L.webp);
     background-size: cover;
 
     top: 0;
