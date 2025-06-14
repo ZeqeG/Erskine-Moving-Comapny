@@ -244,6 +244,20 @@ h1 {
 }
 
 
+.buttonsStackHome {
+    display: flex;
+    gap: 16pt;
+}
+
+#getQuoteHomeBtn {
+    max-width: 800px;
+}
+
+.descriptionAndButton {
+    display: flex;
+    flex-direction: column;
+}
+
 #submitBtn,
 #quoteBtn, #quoteBtnAlt {
     border-radius: 500px;
@@ -544,8 +558,8 @@ h1 {
 }
 
 :root {
- --gmpx-font-family-base: "Shippori Mincho", serif;
-  --gmpx-font-size-base: 1.5rem;
+    --gmpx-font-family-base: "Shippori Mincho", serif;
+    --gmpx-font-size-base: 1.5rem;
 
     /* --gmpx-color-surface: rgba(255, 255, 255, 0); */
     /* --gmpx-color-primary: rgba(0, 0, 0, 0); */
@@ -954,7 +968,17 @@ footer {
 
     }
 
+    .buttonsStackHome {
+        flex-direction: column;
+        gap: 16px;
+        max-width: 100vw;
+    }
 
+    #movingHomeBtn,
+    #deliveriesHomeBtn {
+        margin: 0;
+        width: calc(100vw - 44pt);
+    }
 
     .ctaButton {
         max-width: 100%;
@@ -977,6 +1001,12 @@ footer {
         margin-left: 16pt;
         margin-right: 16pt;
         min-width: 120px;
+    }
+
+    .section {
+        width: calc(100% - 44pt);
+        margin-left: 22pt;
+        margin-right: 22pt;
     }
 
 }
