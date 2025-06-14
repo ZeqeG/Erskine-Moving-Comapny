@@ -143,7 +143,7 @@ input:focus::placeholder {
 
 #responses {
   width: 50vw;
-  /* display: none; */
+  display: none;
   margin-right: 44pt;
 }
 #calcAlt {
