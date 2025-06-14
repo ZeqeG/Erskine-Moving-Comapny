@@ -245,7 +245,7 @@ h1 {
 
 
 #submitBtn,
-#quoteBtn {
+#quoteBtn, #quoteBtnAlt {
     border-radius: 500px;
     font-size: 1.5em;
     line-height: 0;

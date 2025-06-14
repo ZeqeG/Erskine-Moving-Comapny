@@ -1,12 +1,46 @@
 var origin1 = "";
 var destination1 = "";
+const calcMain = document.getElementById("calcMain");
+const calcAlt = document.getElementById("calcAlt");
 const startInput = document.getElementById("quoteStartLocation");
 const endInput = document.getElementById("quoteEndLocation");
-const errorEl = document.getElementById("error");
+const distanceInput = document.getElementById("quoteNumber");
+var errorEl = document.getElementById("error");
 const responseEl = document.getElementById("responses");
 const distanceEl = document.getElementById("distance");
 const timeEl = document.getElementById("time");
 const costEl = document.getElementById("cost");
+
+var truckCost = 0;
+var truckTime = 0;
+function calcTruck(truckType) {
+  switch (truckType) {
+    case '1':
+      truckCost = 11300;
+      truckTime = 180;
+      break;
+    case '2':
+      truckCost = 11900;
+      truckTime = 270;
+      break;
+    case '3':
+      truckCost = 14800;
+      truckTime = 360;
+      break;
+    case '4':
+      truckCost = 17800;
+      truckTime = 540;
+      break;
+  }
+}
+function calcCost(minutes, miles) {
+  let totalMinutes = calcMinutes(minutes);
+  return Math.floor(Math.ceil((10000 + truckCost + (150 * totalMinutes) + (0.8 * miles)) / 500) * 500);
+}
+function calcMinutes(minutes) {
+  return minutes + truckTime;
+}
+
 function getQuote() {
   responseEl.style.display = "none"
   errorEl.innerText = '';
@@ -74,51 +108,21 @@ function initMap() {
     avoidTolls: false,
   };
 
-  // put request on page
-  // document.getElementById("request").innerText = JSON.stringify(
-  //   request,
-  //   null,
-  //   2,
-  // );
   // get distance matrix response
   service.getDistanceMatrix(request).then((response) => {
-    // put response
-    // document.getElementById("response").innerText = JSON.stringify(
-    //   response,
-    //   null,
-    //   2,
-    // );
-
     //calculate cost
-    const truckType = document.getElementById("truck-selector").value;
-    var truckCost = 0;
-    var truckTime = 0;
-    switch (truckType) {
-      case '1':
-        truckCost = 11300;
-        truckTime = 180;
-        break;
-      case '2':
-        truckCost = 11900;
-        truckTime = 270;
-        break;
-      case '3':
-        truckCost = 14800;
-        truckTime = 360;
-        break;
-      case '4':
-        truckCost = 17800;
-        truckTime = 540;
-        break;
-    }
-    let timeMinutes = response.rows[0].elements[0].duration.value / 60 + truckTime;
-    timeEl.innerText = Math.floor(timeMinutes / 60) + ' hours ' + Math.floor(Math.ceil((timeMinutes % 60) / 15) * 15) + ' mins';
-    distanceEl.innerText = response.rows[0].elements[0].distance.text;
+    let truckType = document.getElementById("truck-selector").value;
+    calcTruck(truckType);
+    let timeMinutes = response.rows[0].elements[0].duration.value / 60;
+    var totalMinutes = calcMinutes(timeMinutes);
     console.log('truckcost $' + (truckCost / 100).toLocaleString('en-US'));
     console.log('timecost $' + ((150 * (truckTime + response.rows[0].elements[0].duration.value / 60)) / 100).toLocaleString('en-US'));
     console.log('distancecost $' + ((0.8 * response.rows[0].elements[0].distance.value * 0.06213712) / 100).toLocaleString('en-US'));
-    let cost = Math.floor(Math.ceil((10000 + truckCost + (150 * (truckTime + response.rows[0].elements[0].duration.value / 60)) + (0.8 * response.rows[0].elements[0].distance.value * 0.06213712)) / 500) * 500);
+    let miles = response.rows[0].elements[0].distance.value * 0.06213712;
+    let cost = calcCost(timeMinutes, miles);
     console.log('total $' + (cost / 100).toLocaleString('en-US'));
+    timeEl.innerText = Math.floor(totalMinutes / 60) + ' hours ' + Math.floor(Math.ceil((totalMinutes % 60) / 15) * 15) + ' mins';
+    distanceEl.innerText = response.rows[0].elements[0].distance.text;
     costEl.innerText = '$' + (cost / 100).toLocaleString('en-US');
     responseEl.style.display = "block";
 
@@ -157,7 +161,41 @@ function initMap() {
           .then(showGeocodedAddressOnMap(true));
       }
     }
+  })
+  .catch((err) => {
+    console.log(err);
+    calcMain.style.display = "none";
+    calcAlt.style.display = "flex";
   });
+}
+function getQuoteAlt() {
+  errorEl = document.getElementById("errorAlt");
+  errorEl.innerText = '';
+  if (document.getElementById('scales').checked == true) {
+    console.log(distanceInput.value);
+    if (distanceInput.value == "" || distanceInput.value == null) {
+      console.log('no distance');
+      errorEl.innerText = "Please enter your move distance.";
+    } else if (distanceInput.value == 0) {
+      console.log('distance is 0');
+      errorEl.innerText = "Please distance greater than 0.";
+    } else {
+      let truckType = document.getElementById("truck-selector-alt").value;
+      calcTruck(truckType);
+      let miles = distanceInput.value;
+      let timeMinutes = (miles > 15) ? miles * 60 / 45 : miles * 60 / 30;
+      var totalMinutes = calcMinutes(timeMinutes);
+      let cost = calcCost(timeMinutes, miles);
+      console.log('total $' + (cost / 100).toLocaleString('en-US'));
+      timeEl.innerText = Math.floor(totalMinutes / 60) + ' hours ' + Math.floor(Math.ceil((totalMinutes % 60) / 15) * 15) + ' mins';
+      distanceEl.innerText = miles + ' miles';
+      costEl.innerText = '$' + (cost / 100).toLocaleString('en-US');
+      responseEl.style.display = "block";
+    }
+  } else {
+    console.log('address not in Oregon');
+    errorEl.innerText = "Please confirm you're moving within Oregon.";
+  }
 }
 
 function deleteMarkers(markersArray) {

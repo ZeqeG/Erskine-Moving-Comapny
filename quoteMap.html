@@ -91,7 +91,49 @@
 
     <!-- <form class="quoteContent" id="servicesSection4"> -->
     <div class="quoteMapWrapper">
-        <div class="quoteMapCalc">
+        <div id="calcMain" class="quoteMapCalc">
+
+            <div class="inputs">
+                <div class="quoteHeader">
+                    <h1 class="quoteHeaderText">Get your free quote</h1>
+                </div>
+
+                <gmpx-api-loader key="AIzaSyDYAQh3X8os5p2Y3mHb3q7M8JxKvDoD418"
+                    solution-channel="GMP_CCS_autocomplete_v5">
+                </gmpx-api-loader>
+
+
+
+                <gmpx-place-picker id="quoteStartLocation" for-map="map"
+                    placeholder="Starting Address"></gmpx-place-picker>
+
+                <!-- <input type="text" id="quoteStartLocation" placeholder="Starting Address" class="quoteInput"> -->
+
+                <gmpx-place-picker id="quoteEndLocation" for-map="map"
+                    placeholder="Destination Address"></gmpx-place-picker>
+
+                <!-- <input type="text" id="quoteEndLocation" placeholder="Final Location" class="quoteInput"> -->
+
+                <!-- TRUCK SIZE PICKER -->
+                <fieldset id="dropdownFieldset">
+                    <legend>How big of a truck will your move require?</legend>
+                    <select name="truck size" id="truck-selector" class="dropdown">
+                        <option value="1">Small apartment, Truck dimensions (9'11" x 6'4" x 6'2")</option>
+                        <option value="2">Large apartment/small home, Truck dimensions (15' x 7'8" x 7'2")</option>
+                        <option value="3">Mid sized house, Truck dimensions (19'6" x 7'8" x 7'2")</option>
+                        <option value="4">Large house, (26'2" x 8'2" x 8'3")</option>
+                    </select>
+                </fieldset>
+
+                <p id="error"></p>
+
+                <!-- BUTTON  -->
+                <button id="quoteBtn" class="quoteBtn ctaButton" onClick="getQuote()">Get your quote
+                </button>
+
+            </div>
+        </div>
+        <div id="calcAlt" class="quoteMapCalc">
 
             <div class="inputs">
                 <div class="quoteHeader">
@@ -113,24 +155,12 @@
                     solution-channel="GMP_CCS_autocomplete_v5">
                 </gmpx-api-loader>
 
-
-
-                <gmpx-place-picker id="quoteStartLocation" for-map="map"
-                    placeholder="Starting Address"></gmpx-place-picker>
-
-                <!-- <input type="text" id="quoteStartLocation" placeholder="Starting Address" class="quoteInput"> -->
-
-                <gmpx-place-picker id="quoteEndLocation" for-map="map"
-                    placeholder="Destination Address"></gmpx-place-picker>
-
-                <!-- <input type="text" id="quoteEndLocation" placeholder="Final Location" class="quoteInput"> -->
-
-
+                <input type="number" id="quoteNumber" placeholder="Move Distance (Miles)" class="quoteInput" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');">
 
                 <!-- TRUCK SIZE PICKER -->
                 <fieldset id="dropdownFieldset">
                     <legend>How big of a truck will your move require?</legend>
-                    <select name="truck size" id="truck-selector" class="dropdown">
+                    <select name="truck size" id="truck-selector-alt" class="dropdown">
                         <option value="1">Small apartment, Truck dimensions (9'11" x 6'4" x 6'2")</option>
                         <option value="2">Large apartment/small home, Truck dimensions (15' x 7'8" x 7'2")</option>
                         <option value="3">Mid sized house, Truck dimensions (19'6" x 7'8" x 7'2")</option>
@@ -138,17 +168,13 @@
                     </select>
                 </fieldset>
 
-                <p id="error"></p>
+                <p id="errorAlt"></p>
 
                 <!-- BUTTON  -->
-                <button id="quoteBtn" class="quoteBtn ctaButton" onClick="getQuote()">Get your quote
+                <button id="quoteBtnAlt" class="quoteBtn ctaButton" onClick="getQuoteAlt()">Get your quote
                 </button>
 
             </div>
-
-
-
-
         </div>
 
         <!-- RESPONSES -->

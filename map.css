@@ -137,7 +137,7 @@ input:focus::placeholder {
 }
 
 
-#error {
+#error, #errorAlt {
   color: rgb(160, 9, 9);
 }
 
@@ -145,4 +145,7 @@ input:focus::placeholder {
   width: 50vw;
   /* display: none; */
   margin-right: 44pt;
+}
+#calcAlt {
+  display: none;
 }
