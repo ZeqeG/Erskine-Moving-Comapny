@@ -50,7 +50,7 @@ function getQuote() {
     }
   } else {
     console.log('no input' + JSON.stringify(orginRes) + JSON.stringify(destinationRes));
-    errorEl.innerText = 'Please fill both address feilds.';
+    errorEl.innerText = 'Please fill both address fields.';
   }
 }
 function initMap() {
