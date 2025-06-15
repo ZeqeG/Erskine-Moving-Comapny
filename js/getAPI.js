@@ -206,10 +206,22 @@ function deleteMarkers(markersArray) {
 }
 
 // new autocomplete code
-async function init(nothing, inputID) {
-  console.log(String(inputID));
-  const resultsElement = document.getElementById("resultsOrgin");
-  if (startInput.value == '' || startInput.value == null) {
+async function autoFillInit(type) {
+  console.log(type);
+  var resultsID;
+  var innerValue;
+  switch (type) {
+    case 'orgin':
+      resultsID = "resultsOrgin";
+      innerValue = startInput.value;
+      break;
+    case 'destination':
+      resultsID = "resultsDestination";
+      innerValue = endInput.value;
+      break;
+  }
+  const resultsElement = document.getElementById(resultsID);
+  if (innerValue == '' || innerValue == null) {
     resultsElement.innerHTML = '';
   } else {
     // @ts-ignore
@@ -217,7 +229,7 @@ async function init(nothing, inputID) {
       await google.maps.importLibrary("places");
     // Add an initial request body.
     let request = {
-      input: startInput.value,
+      input: innerValue,
       // locationRestriction: {
       //   west: -122.44,
       //   north: 37.8,
@@ -266,4 +278,9 @@ async function init(nothing, inputID) {
     //   place.formattedAddress;
   }
 }
-startInput.addEventListener('input', init.bind('blank', 'orgin'));
+startInput.addEventListener('input', function (e) {
+  autoFillInit('orgin');
+});
+endInput.addEventListener('input', function (e) {
+  autoFillInit('destination');
+});
