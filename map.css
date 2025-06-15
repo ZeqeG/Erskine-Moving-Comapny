@@ -141,7 +141,10 @@ input:focus::placeholder {
 .dropdown-item {
   color: black;
   margin: 12pt;
-  margin-left: 18pt;
+ 
+  padding: 8pt;
+  border-radius: 20px;
+  cursor: pointer;
 }
 
 #resultsOrgin,
@@ -154,6 +157,10 @@ input:focus::placeholder {
   position: absolute;
   margin-top: 50pt;
   z-index: 20;
+}
+.dropdown-item:hover {
+background-color: black;
+color: white;
 }
 
 #topTextInputAndList,
