@@ -308,8 +308,10 @@ function hideAutoResults(type) {
   }
   const resultsElement = document.getElementById(resultsID);
   if (!(document.activeElement == inputType)) {
+    document.getElementById('distance').innerText = resultsElement.innerHTML;
     resultsElement.innerHTML = '';
-    document.getElementById('distance').innerText = document.activeElement.id;
+  } else {
+    document.getElementById('distance').innerText = resultsElement.innerHTML;
   }
 }
 startInput.addEventListener('input', function () {
