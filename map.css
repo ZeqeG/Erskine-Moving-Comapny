@@ -149,6 +149,7 @@ input:focus::placeholder {
 
 #resultsOrgin,
 #resultsDestination {
+  visibility: hidden;
   border: solid;
   border-width: 1.5px;
   border-color: black;
@@ -242,7 +243,6 @@ input:focus::placeholder {
   #resultsDestination {
     width: calc(100vw - 44pt);
     margin-top: 46px;
-    visibility: hidden;
   }
 
   #dropdownFieldset {
