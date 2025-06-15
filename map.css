@@ -149,3 +149,6 @@ input:focus::placeholder {
 #calcAlt {
   display: none;
 }
+.dropdown-item {
+  color: aquamarine;
+}

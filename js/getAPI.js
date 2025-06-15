@@ -206,8 +206,9 @@ function deleteMarkers(markersArray) {
 }
 
 // new autocomplete code
-async function init() {
-  const resultsElement = document.getElementById("results");
+async function init(nothing, inputID) {
+  console.log(String(inputID));
+  const resultsElement = document.getElementById("resultsOrgin");
   if (startInput.value == '' || startInput.value == null) {
     resultsElement.innerHTML = '';
   } else {
@@ -241,7 +242,8 @@ async function init() {
     for (let suggestion of suggestions) {
       const placePrediction = suggestion.placePrediction;
       // Create a new list element.
-      const listItem = document.createElement("li");
+      const listItem = document.createElement("div");
+      listItem.classList.add("dropdown-item")
 
       listItem.appendChild(
         document.createTextNode(placePrediction.text.toString()),
@@ -264,4 +266,4 @@ async function init() {
     //   place.formattedAddress;
   }
 }
-startInput.addEventListener('input', init);
+startInput.addEventListener('input', init.bind(blank, 'orgin'));
