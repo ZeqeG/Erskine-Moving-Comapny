@@ -162,11 +162,15 @@ input:focus::placeholder {
   flex-direction: column;
 }
 
-#distanceSidebyside {
+#distanceSidebyside, #timeSidebyside, #costSidebyside {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: start;
+}
+
+#costSidebyside {
+  margin-top: 24pt;
 }
 
 #distance {
@@ -210,5 +214,9 @@ input:focus::placeholder {
   #resultsDestination {
     width: calc(100vw - 44pt);
     margin-top: 46px;
+  }
+
+  #dropdownFieldset {
+    border-radius: 24px;
   }
 }
