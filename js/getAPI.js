@@ -2,6 +2,7 @@ var orginRes = "";
 var destinationRes = "";
 var orginComponents = [];
 var destinationComponents = [];
+console.log(orginComponents.toString());
 const calcMain = document.getElementById("calcMain");
 const calcAlt = document.getElementById("calcAlt");
 const startInput = document.getElementById("quoteStartLocation");
@@ -50,31 +51,40 @@ function getQuote() {
   destinationRes = endInput.value;
   console.log(orginRes + ', ' + destinationRes);
   // console.log('check 1 ' + JSON.stringify(orginRes) + JSON.stringify(destinationRes) + orginRes + destinationRes);
-  if (orginRes !== undefined && destinationRes !== undefined) {
+  if (orginRes !== '' && destinationRes !== '') {
     // console.log(document.getElementById("quoteStartLocation").value);
     // console.log(orginRes + ', ' + destinationRes);
     // console.log(JSON.stringify(document.getElementById("quoteStartLocation").value.addressComponents));
     // console.log(document.getElementById("quoteStartLocation").value.addressComponents[0].types);
     let inOregon = 0;
-    for (i = 0; i < orginComponents.length; i++) {
-      if (orginComponents[i].types[0] == "administrative_area_level_1") {
-        if (orginComponents[i].longText == "Oregon") {
-          // console.log('Orgin in Oregon');
-          inOregon++;
-        } else {
-          console.log('Orgin not in Oregon');
+    if (orginComponents.toString() !== '') {
+      for (i = 0; i < orginComponents.length; i++) {
+        if (orginComponents[i].types[0] == "administrative_area_level_1") {
+          if (orginComponents[i].longText == "Oregon") {
+            // console.log('Orgin in Oregon');
+            inOregon++;
+          } else {
+            console.log('Orgin not in Oregon');
+          }
         }
       }
+    } else if (orginRes.toLowerCase().includes('or')) {
+      inOregon++
     }
-    for (i = 0; i < destinationComponents.length; i++) {
-      if (destinationComponents[i].types[0] == "administrative_area_level_1") {
-        if (destinationComponents[i].longText == "Oregon") {
-          // console.log('Destination in Oregon');
-          inOregon++;
-        } else {
-          console.log('Destination not in Oregon');
+    
+    if (destinationComponents.toString() !== '') {
+      for (i = 0; i < destinationComponents.length; i++) {
+        if (destinationComponents[i].types[0] == "administrative_area_level_1") {
+          if (destinationComponents[i].longText == "Oregon") {
+            // console.log('Destination in Oregon');
+            inOregon++;
+          } else {
+            console.log('Destination not in Oregon');
+          }
         }
       }
+    } else if (orginRes.toLowerCase().includes('or')) {
+      inOregon++
     }
     
     if (inOregon == 2) {
@@ -208,6 +218,8 @@ function deleteMarkers(markersArray) {
 }
 
 // new autocomplete code
+var requestNumber = 0;
+var requestTimer = 0;
 async function autoFillInit(type) {
   var resultsID;
   var inputType;
@@ -215,11 +227,13 @@ async function autoFillInit(type) {
     case 'orgin':
       resultsID = "resultsOrgin";
       inputType = startInput;
+      orginComponents = [];
       hideAutoResults('destination');
       break;
     case 'destination':
       resultsID = "resultsDestination";
       inputType = endInput;
+      destinationComponents = [];
       hideAutoResults('orgin');
       break;
   }
@@ -254,45 +268,55 @@ async function autoFillInit(type) {
     request.sessionToken = token;
 
     // Fetch autocomplete suggestions.
-    const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions(request);
-    resultsElement.innerHTML = '';
-    for (let suggestion of suggestions) {
-      const placePrediction = suggestion.placePrediction;
-      // Create a new list element.
-      const listItem = document.createElement("div");
-      listItem.classList.add("dropdown-item");
-      listItem.appendChild(
-        document.createTextNode(placePrediction.text.toString()),
-      );
-      let place = placePrediction.toPlace();
-      await place.fetchFields({
-        fields: ["displayName", "formattedAddress", "addressComponents"],
-      });
-      listItem.addEventListener('click', function (i) {
-        console.log(this.innerText);
-        console.log(place.addressComponents);
-        console.log(type)
-        inputType.value = this.innerText;
-        switch (type) {
-          case 'orgin':
-            orginComponents = place.addressComponents;
-            break;
-          case 'destination':
-            destinationComponents = place.addressComponents;
-            break;
+    let thisRequest = ++requestNumber;
+    let thisTimer = ++requestTimer;
+    console.log(thisTimer + ', ' + requestTimer);
+    async function getResponse() {
+      console.log(thisTimer + ', ' + requestTimer);
+      if (thisTimer == requestTimer) {
+        const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions(request);
+        if (thisRequest !== requestNumber) return;
+        resultsElement.innerHTML = '';
+        for (let suggestion of suggestions) {
+          const placePrediction = suggestion.placePrediction;
+          // Create a new list element.
+          const listItem = document.createElement("div");
+          listItem.classList.add("dropdown-item");
+          listItem.appendChild(
+            document.createTextNode(placePrediction.text.toString()),
+          );
+          let place = placePrediction.toPlace();
+          await place.fetchFields({
+            fields: ["formattedAddress", "addressComponents"],
+          });
+          listItem.addEventListener('click', function (i) {
+            console.log(this.innerText);
+            console.log(place.addressComponents);
+            console.log(type)
+            inputType.value = this.innerText;
+            switch (type) {
+              case 'orgin':
+                orginComponents = place.addressComponents;
+                break;
+              case 'destination':
+                destinationComponents = place.addressComponents;
+                break;
+            }
+            hideAutoResults(type);
+          });
+          resultsElement.appendChild(listItem);
         }
-        hideAutoResults(type);
-      });
-      resultsElement.appendChild(listItem);
-    }
-    // const placeInfo = document.getElementById("prediction");
+        // const placeInfo = document.getElementById("prediction");
 
-    // placeInfo.textContent =
-    //   "First predicted place: " +
-    //   place.displayName +
-    //   ": " +
-    //   place.formattedAddress;
-    hideAutoResults(type)
+        // placeInfo.textContent =
+        //   "First predicted place: " +
+        //   place.displayName +
+        //   ": " +
+        //   place.formattedAddress;
+        hideAutoResults(type)
+      }
+    }
+    setTimeout(getResponse, 500);
   }
 }
 function hideAutoResults(type) {
