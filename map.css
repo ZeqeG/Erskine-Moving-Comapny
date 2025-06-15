@@ -113,7 +113,7 @@ input:focus::placeholder {
 
   gap: 16pt;
   max-width: 1000px;
-  min-width: 350px;
+  min-width: 270px;
 }
 
 
@@ -188,6 +188,9 @@ color: white;
 @media (max-width: 1110px) {
   .quoteMapCalc {
     width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-items: center;
   }
 
   .inputs {
@@ -225,5 +228,10 @@ color: white;
 
   #dropdownFieldset {
     border-radius: 24px;
+  }
+  #responses {
+    width: calc(100vw - 44pt);
+    margin-left: 22pt;
+    margin-right: 22pt;
   }
 }
