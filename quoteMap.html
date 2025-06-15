@@ -107,14 +107,18 @@
                 <!-- <gmpx-place-picker id="quoteStartLocation" for-map="map"
                     placeholder="Starting Address"></gmpx-place-picker> -->
 
-                <input type="text" id="quoteStartLocation" placeholder="Starting Address" class="quoteInput">
-                <div id="resultsOrgin"></div>
+                <div id="topTextInputAndList">
+                    <input type="text" id="quoteStartLocation" placeholder="Starting Address" class="quoteInput">
+                    <div id="resultsOrgin"></div>
+                </div>
 
                 <!-- <gmpx-place-picker id="quoteEndLocation" for-map="map"
                     placeholder="Destination Address"></gmpx-place-picker> -->
 
-                <input type="text" id="quoteEndLocation" placeholder="Final Location" class="quoteInput">
-                <div id="resultsDestination"></div>
+                <div id="bottomTextInputAndList">
+                    <input type="text" id="quoteEndLocation" placeholder="Final Location" class="quoteInput">
+                    <div id="resultsDestination"></div>
+                </div>
 
                 <!-- TRUCK SIZE PICKER -->
                 <fieldset id="dropdownFieldset">
@@ -153,7 +157,8 @@
 
                 </fieldset>
 
-                <input type="number" id="quoteNumber" placeholder="Move Distance (Miles)" class="quoteInput" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');">
+                <input type="number" id="quoteNumber" placeholder="Move Distance (Miles)" class="quoteInput"
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');">
 
                 <!-- TRUCK SIZE PICKER -->
                 <fieldset id="dropdownFieldset">
@@ -184,8 +189,8 @@
             <p>Total Estimated Time: <span id="time"></span></p>
             <p>Estimated Cost: <span id="cost"></span><sub><i>Actual cost may vary greatly.</i></sub></p>
             <!-- can we have a static screenshot or smth here like of oregon before the quote so theres not like layout changes -->
-            <div id="map"></div> 
-        
+            <div id="map"></div>
+
         </div>
 
     </div>
