@@ -98,16 +98,17 @@
                     <h1 class="quoteHeaderText">Get your free quote</h1>
                 </div>
 
-                <gmpx-api-loader key="AIzaSyDYAQh3X8os5p2Y3mHb3q7M8JxKvDoD418"
+                <!-- <gmpx-api-loader key="AIzaSyDYAQh3X8os5p2Y3mHb3q7M8JxKvDoD418"
                     solution-channel="GMP_CCS_autocomplete_v5">
-                </gmpx-api-loader>
+                </gmpx-api-loader> -->
 
 
 
-                <gmpx-place-picker id="quoteStartLocation" for-map="map"
-                    placeholder="Starting Address"></gmpx-place-picker>
+                <!-- <gmpx-place-picker id="quoteStartLocation" for-map="map"
+                    placeholder="Starting Address"></gmpx-place-picker> -->
 
-                <!-- <input type="text" id="quoteStartLocation" placeholder="Starting Address" class="quoteInput"> -->
+                <input type="text" id="quoteStartLocation" placeholder="Starting Address" class="quoteInput">
+                <div id="results"></div>
 
                 <gmpx-place-picker id="quoteEndLocation" for-map="map"
                     placeholder="Destination Address"></gmpx-place-picker>
@@ -142,11 +143,11 @@
 
                 <!-- CHECKBOX  -->
                 <fieldset>
-                    <legend>We can only move inside Oregon at this time.</legend>
+                    <legend>We can only move within Oregon at this time.</legend>
 
                     <div id="checkboxAndLabel">
                         <input type="checkbox" id="scales" name="scales" class="checkbox" unchecked />
-                        <label for="scales" id="insideOregonCheckLabel">I'm only moving inside Oregon</label>
+                        <label for="scales" id="insideOregonCheckLabel">I'm only moving within Oregon</label>
                     </div>
 
                 </fieldset>

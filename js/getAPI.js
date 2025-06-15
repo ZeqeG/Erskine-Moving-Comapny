@@ -204,3 +204,64 @@ function deleteMarkers(markersArray) {
   }
   markersArray = [];
 }
+
+// new autocomplete code
+async function init() {
+  const resultsElement = document.getElementById("results");
+  if (startInput.value == '' || startInput.value == null) {
+    resultsElement.innerHTML = '';
+  } else {
+    // @ts-ignore
+    const { Place, AutocompleteSessionToken, AutocompleteSuggestion } =
+      await google.maps.importLibrary("places");
+    // Add an initial request body.
+    let request = {
+      input: startInput.value,
+      // locationRestriction: {
+      //   west: -122.44,
+      //   north: 37.8,
+      //   east: -122.39,
+      //   south: 37.78,
+      // },
+      // origin: { lat: 37.7893, lng: -122.4039 },
+      // includedPrimaryTypes: ["restaurant"],
+      language: "en-US",
+      region: "us",
+    };
+    // Create a session token.
+    const token = new AutocompleteSessionToken();
+
+    // Add the token to the request.
+    // @ts-ignore
+    request.sessionToken = token;
+
+    // Fetch autocomplete suggestions.
+    const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions(request);
+    resultsElement.innerHTML = '';
+    for (let suggestion of suggestions) {
+      const placePrediction = suggestion.placePrediction;
+      // Create a new list element.
+      const listItem = document.createElement("li");
+
+      listItem.appendChild(
+        document.createTextNode(placePrediction.text.toString()),
+      );
+      resultsElement.appendChild(listItem);
+    }
+
+    let place = suggestions[0].placePrediction.toPlace(); // Get first predicted place.
+
+    await place.fetchFields({
+      fields: ["displayName", "formattedAddress"],
+    });
+
+    // const placeInfo = document.getElementById("prediction");
+
+    // placeInfo.textContent =
+    //   "First predicted place: " +
+    //   place.displayName +
+    //   ": " +
+    //   place.formattedAddress;
+  }
+}
+startInput.addEventListener('input', init);
