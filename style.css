@@ -259,7 +259,8 @@ h1 {
 }
 
 #submitBtn,
-#quoteBtn, #quoteBtnAlt {
+#quoteBtn,
+#quoteBtnAlt {
     border-radius: 500px;
     font-size: 1.5em;
     line-height: 0;
@@ -421,9 +422,9 @@ h1 {
     flex-direction: row;
     justify-content: space-between;
 
-    width: calc(100% - 88pt);
-    margin-left: 44pt;
-    margin-right: 44pt;
+    width: calc(100% - 176pt);
+    margin-left: 88pt;
+    margin-right: 88pt;
     box-sizing: border-box;
     margin-bottom: 44pt;
 
@@ -742,6 +743,18 @@ legend {
 
     .bioImage {
         width: 200px
+    }
+
+    .movingSection {
+        width: calc(100% - 88pt);
+        margin-left: 44pt;
+        margin-right: 44pt;
+    }
+
+    #bannerTextAndCTAMoving {
+        margin-right: 120px;
+        margin-left: 120px;
+
     }
 }
 
