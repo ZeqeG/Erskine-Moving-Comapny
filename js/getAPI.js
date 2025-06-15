@@ -207,21 +207,22 @@ function deleteMarkers(markersArray) {
 
 // new autocomplete code
 async function autoFillInit(type) {
-  console.log(type);
   var resultsID;
-  var innerValue;
+  var inputType;
   switch (type) {
     case 'orgin':
       resultsID = "resultsOrgin";
-      innerValue = startInput.value;
+      inputType = startInput;
+      hideAutoResults('destination');
       break;
     case 'destination':
       resultsID = "resultsDestination";
-      innerValue = endInput.value;
+      inputType = endInput;
+      hideAutoResults('orgin');
       break;
   }
   const resultsElement = document.getElementById(resultsID);
-  if (innerValue == '' || innerValue == null) {
+  if (inputType.value == '' || inputType.value == null) {
     resultsElement.innerHTML = '';
   } else {
     // @ts-ignore
@@ -229,7 +230,7 @@ async function autoFillInit(type) {
       await google.maps.importLibrary("places");
     // Add an initial request body.
     let request = {
-      input: innerValue,
+      input: inputType.value,
       // locationRestriction: {
       //   west: -122.44,
       //   north: 37.8,
@@ -255,11 +256,15 @@ async function autoFillInit(type) {
       const placePrediction = suggestion.placePrediction;
       // Create a new list element.
       const listItem = document.createElement("div");
-      listItem.classList.add("dropdown-item")
-
+      listItem.classList.add("dropdown-item");
       listItem.appendChild(
         document.createTextNode(placePrediction.text.toString()),
       );
+      listItem.addEventListener('click', function () {
+        console.log(this.innerText);
+        inputType.value = this.innerText;
+        hideAutoResults(type);
+      });
       resultsElement.appendChild(listItem);
     }
 
@@ -276,11 +281,40 @@ async function autoFillInit(type) {
     //   place.displayName +
     //   ": " +
     //   place.formattedAddress;
+    hideAutoResults(type)
   }
 }
-startInput.addEventListener('input', function (e) {
+function hideAutoResults(type) {
+  var resultsID;
+  var inputType;
+  switch (type) {
+    case 'orgin':
+      resultsID = "resultsOrgin";
+      inputType = startInput;
+      break;
+    case 'destination':
+      resultsID = "resultsDestination";
+      inputType = endInput;
+      break;
+  }
+  const resultsElement = document.getElementById(resultsID);
+  if (!(document.activeElement == inputType)) {
+    resultsElement.innerHTML = '';
+  }
+}
+startInput.addEventListener('input', function () {
   autoFillInit('orgin');
 });
-endInput.addEventListener('input', function (e) {
+endInput.addEventListener('input', function () {
   autoFillInit('destination');
+});
+startInput.addEventListener('mousedown', function () {
+  hideAutoResults('destination');
+});
+endInput.addEventListener('mousedown', function () {
+  hideAutoResults('orgin');
+});
+window.addEventListener('mousedown', function () {
+  hideAutoResults('orgin');
+  hideAutoResults('destination');
 });
