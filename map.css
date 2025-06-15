@@ -234,4 +234,12 @@ color: white;
     margin-left: 22pt;
     margin-right: 22pt;
   }
+  #distanceSidebyside, #timeSidebyside, #costSidebyside h2 { 
+    font-size: 0.8em !important;
+    flex-direction: column;
+    text-align: left;
+    justify-content: start;
+    align-items: start;
+  }
+
 }
