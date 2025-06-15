@@ -74,7 +74,7 @@ input:focus::placeholder {
   flex-direction: row;
   /* justify-content: space-between; */
 
-  width: 100vw;
+  width: 60vw;
   /* margin-left: 44pt; */
   /* margin-right: 44pt; */
   box-sizing: border-box;
@@ -94,11 +94,17 @@ input:focus::placeholder {
 
 }
 
+.quoteHeaderText {
+  margin-top: 30pt;
+  margin-left: 44pt;
+margin-right: 44pt;
+}
+
 
 .inputs {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 
   width: 50vw;
   margin-left: 44pt;
@@ -110,6 +116,63 @@ input:focus::placeholder {
   min-width: 350px;
 }
 
+
+
+.pac-target-input {
+  border-radius: 50px;
+}
+
+
+#error,
+#errorAlt {
+  color: rgb(160, 9, 9);
+}
+
+#responses {
+  width: 40vw;
+  /* display: none; */
+  margin-right: 44pt;
+}
+
+#calcAlt {
+  display: none;
+}
+
+.dropdown-item {
+  color: black;
+  margin: 12pt;
+  margin-left: 18pt;
+}
+
+#resultsOrgin,
+#resultsDestination {
+  border: solid;
+  border-width: 1.5px;
+  border-color: black;
+  background-color: white;
+  border-radius: 36px;
+  position: absolute;
+  margin-top: 50pt;
+  z-index: 20;
+}
+
+#topTextInputAndList,
+#bottomTextInputAndList {
+  display: flex;
+  flex-direction: column;
+}
+
+#distanceSidebyside {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+}
+
+#distance {
+  margin-left: 0.5em;
+  font-weight: bold;
+}
 
 @media (max-width: 1110px) {
   .quoteMapCalc {
@@ -130,25 +193,4 @@ input:focus::placeholder {
     margin-right: 44pt;
   }
 
-}
-
-.pac-target-input {
-  border-radius: 50px;
-}
-
-
-#error, #errorAlt {
-  color: rgb(160, 9, 9);
-}
-
-#responses {
-  width: 50vw;
-  display: none;
-  margin-right: 44pt;
-}
-#calcAlt {
-  display: none;
-}
-.dropdown-item {
-  color: aquamarine;
 }

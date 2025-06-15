@@ -84,19 +84,20 @@
     </div>
 
 
-    <div class="medSpacer">
+    <div class="bigSpacer">
     </div>
 
 
+    <div class="quoteHeader">
+        <h1 class="quoteHeaderText">Get your free quote</h1>
+    </div>
 
     <!-- <form class="quoteContent" id="servicesSection4"> -->
     <div class="quoteMapWrapper">
         <div id="calcMain" class="quoteMapCalc">
 
             <div class="inputs">
-                <div class="quoteHeader">
-                    <h1 class="quoteHeaderText">Get your free quote</h1>
-                </div>
+
 
                 <!-- <gmpx-api-loader key="AIzaSyDYAQh3X8os5p2Y3mHb3q7M8JxKvDoD418"
                     solution-channel="GMP_CCS_autocomplete_v5">
@@ -108,7 +109,8 @@
                     placeholder="Starting Address"></gmpx-place-picker> -->
 
                 <div id="topTextInputAndList">
-                    <input type="text" id="quoteStartLocation" placeholder="Starting Address" class="quoteInput">
+                    <input type="text" id="quoteStartLocation" placeholder="Starting Address" class="quoteInput"
+                        autocomplete="street-address">
                     <div id="resultsOrgin"></div>
                 </div>
 
@@ -116,7 +118,8 @@
                     placeholder="Destination Address"></gmpx-place-picker> -->
 
                 <div id="bottomTextInputAndList">
-                    <input type="text" id="quoteEndLocation" placeholder="Final Location" class="quoteInput">
+                    <input type="text" id="quoteEndLocation" placeholder="Final Location" class="quoteInput"
+                        autocomplete="street-address">
                     <div id="resultsDestination"></div>
                 </div>
 
@@ -182,8 +185,10 @@
 
         <!-- RESPONSES -->
         <div id="responses">
-            <h2>Distance:</h2>
-            <p>Distance: <span id="distance"></span></p>
+            <div id="distanceSidebyside">
+                <h2>Distance:</h2>
+                <h2 id="distance">200 miles</h2>
+            </div>
             <h2>Total Estimated Time:</h2>
             <h2>Estimated Cost:</h2>
             <p>Total Estimated Time: <span id="time"></span></p>
