@@ -242,6 +242,7 @@ input:focus::placeholder {
   #resultsDestination {
     width: calc(100vw - 44pt);
     margin-top: 46px;
+    visibility: hidden;
   }
 
   #dropdownFieldset {
