@@ -323,3 +323,15 @@ window.addEventListener('mousedown', function () {
     hideAutoResults('destination');
   }, 100);
 });
+onload = () => {
+  defaultMap()
+}
+function defaultMap() {
+  const bounds = new google.maps.LatLngBounds();
+  const markersArray = [];
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 43.93116, lng: -120.60676 }, //43.93116° N, 120.60676° W
+    zoom: 6,
+    disableDefaultUI: true,
+  });
+}
