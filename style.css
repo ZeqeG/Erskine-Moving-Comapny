@@ -429,7 +429,7 @@ h1 {
     box-sizing: border-box;
     margin-bottom: 44pt;
 
-    gap: 32pt;
+    gap: 8pt;
 }
 
 
@@ -660,6 +660,7 @@ legend {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: 16pt;
 }
 
 
@@ -686,9 +687,17 @@ legend {
 .longDescription {
     max-width: 2400px;
     text-wrap: balance;
-
-
+    margin: 0;
 }
+
+.longDescription p {
+    margin: 8pt;
+}
+
+#movingNote {
+    margin-top: 16pt;
+}
+
 
 .pulledDescription {
     max-width: 800px;
@@ -807,6 +816,11 @@ legend {
     /* gap: 16pt; */
     box-sizing: border-box;
     max-width: 1200px;
+
+ list-style-position: inside;
+  padding-left: 0;
+  -webkit-padding-start: 0;
+  padding-inline-start: 0;
 }
 
 footer {
