@@ -266,4 +266,4 @@ async function init(nothing, inputID) {
     //   place.formattedAddress;
   }
 }
-startInput.addEventListener('input', init.bind(blank, 'orgin'));
+startInput.addEventListener('input', init.bind('blank', 'orgin'));
