@@ -1,5 +1,7 @@
-var origin1 = "";
-var destination1 = "";
+var orginRes = "";
+var destinationRes = "";
+var orginComponents = [];
+var destinationComponents = [];
 const calcMain = document.getElementById("calcMain");
 const calcAlt = document.getElementById("calcAlt");
 const startInput = document.getElementById("quoteStartLocation");
@@ -44,20 +46,19 @@ function calcMinutes(minutes) {
 function getQuote() {
   responseEl.style.display = "none"
   errorEl.innerText = '';
-  var orginRes = startInput.value;
-  var destinationRes = endInput.value;
+  orginRes = startInput.value;
+  destinationRes = endInput.value;
+  console.log(orginRes + ', ' + destinationRes);
   // console.log('check 1 ' + JSON.stringify(orginRes) + JSON.stringify(destinationRes) + orginRes + destinationRes);
   if (orginRes !== undefined && destinationRes !== undefined) {
     // console.log(document.getElementById("quoteStartLocation").value);
-    origin1 = orginRes.formattedAddress;
-    destination1 = destinationRes.formattedAddress;
-    // console.log(origin1 + ', ' + destination1);
+    // console.log(orginRes + ', ' + destinationRes);
     // console.log(JSON.stringify(document.getElementById("quoteStartLocation").value.addressComponents));
     // console.log(document.getElementById("quoteStartLocation").value.addressComponents[0].types);
     let inOregon = 0;
-    for (i = 0; i < orginRes.addressComponents.length; i++) {
-      if (orginRes.addressComponents[i].types[0] == "administrative_area_level_1") {
-        if (orginRes.addressComponents[i].longText == "Oregon") {
+    for (i = 0; i < orginComponents.length; i++) {
+      if (orginComponents[i].types[0] == "administrative_area_level_1") {
+        if (orginComponents[i].longText == "Oregon") {
           // console.log('Orgin in Oregon');
           inOregon++;
         } else {
@@ -65,9 +66,9 @@ function getQuote() {
         }
       }
     }
-    for (i = 0; i < destinationRes.addressComponents.length; i++) {
-      if (destinationRes.addressComponents[i].types[0] == "administrative_area_level_1") {
-        if (destinationRes.addressComponents[i].longText == "Oregon") {
+    for (i = 0; i < destinationComponents.length; i++) {
+      if (destinationComponents[i].types[0] == "administrative_area_level_1") {
+        if (destinationComponents[i].longText == "Oregon") {
           // console.log('Destination in Oregon');
           inOregon++;
         } else {
@@ -100,8 +101,8 @@ function initMap() {
   const service = new google.maps.DistanceMatrixService();
   // build request
   const request = {
-    origins: [origin1],
-    destinations: [destination1],
+    origins: [orginRes],
+    destinations: [destinationRes],
     travelMode: google.maps.TravelMode.DRIVING,
     unitSystem: google.maps.UnitSystem.IMPERIAL,
     avoidHighways: false,
@@ -111,6 +112,7 @@ function initMap() {
   // get distance matrix response
   service.getDistanceMatrix(request).then((response) => {
     //calculate cost
+    console.log(JSON.stringify(response));
     let truckType = document.getElementById("truck-selector").value;
     calcTruck(truckType);
     let timeMinutes = response.rows[0].elements[0].duration.value / 60;
@@ -260,20 +262,27 @@ async function autoFillInit(type) {
       listItem.appendChild(
         document.createTextNode(placePrediction.text.toString()),
       );
-      listItem.addEventListener('click', function () {
+      let place = placePrediction.toPlace();
+      await place.fetchFields({
+        fields: ["displayName", "formattedAddress", "addressComponents"],
+      });
+      listItem.addEventListener('click', function (i) {
         console.log(this.innerText);
+        console.log(place.addressComponents);
+        console.log(type)
         inputType.value = this.innerText;
+        switch (type) {
+          case 'orgin':
+            orginComponents = place.addressComponents;
+            break;
+          case 'destination':
+            destinationComponents = place.addressComponents;
+            break;
+        }
         hideAutoResults(type);
       });
       resultsElement.appendChild(listItem);
     }
-
-    let place = suggestions[0].placePrediction.toPlace(); // Get first predicted place.
-
-    await place.fetchFields({
-      fields: ["displayName", "formattedAddress"],
-    });
-
     // const placeInfo = document.getElementById("prediction");
 
     // placeInfo.textContent =
@@ -308,13 +317,9 @@ startInput.addEventListener('input', function () {
 endInput.addEventListener('input', function () {
   autoFillInit('destination');
 });
-startInput.addEventListener('mousedown', function () {
-  hideAutoResults('destination');
-});
-endInput.addEventListener('mousedown', function () {
-  hideAutoResults('orgin');
-});
 window.addEventListener('mousedown', function () {
-  hideAutoResults('orgin');
-  hideAutoResults('destination');
+  setTimeout(() => {
+    hideAutoResults('orgin');
+    hideAutoResults('destination');
+  }, 100);
 });
