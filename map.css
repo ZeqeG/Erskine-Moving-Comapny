@@ -141,7 +141,7 @@ input:focus::placeholder {
 .dropdown-item {
   color: black;
   margin: 12pt;
- 
+
   padding: 8pt;
   border-radius: 20px;
   cursor: pointer;
@@ -158,9 +158,10 @@ input:focus::placeholder {
   margin-top: 50pt;
   z-index: 20;
 }
+
 .dropdown-item:hover {
-background-color: black;
-color: white;
+  background-color: black;
+  color: white;
 }
 
 #topTextInputAndList,
@@ -169,10 +170,12 @@ color: white;
   flex-direction: column;
 }
 
-#distanceSidebyside, #timeSidebyside, #costSidebyside {
+#distanceSidebyside,
+#timeSidebyside,
+#costSidebyside {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: start;
   justify-content: start;
 }
 
@@ -180,8 +183,10 @@ color: white;
   margin-top: 24pt;
 }
 
-#distance {
-  margin-left: 0.5em;
+#distance,
+#time,
+#cost {
+
   font-weight: bold;
 }
 
@@ -207,6 +212,19 @@ color: white;
     margin-right: 44pt;
   }
 
+  #distanceSidebyside h2,
+  #timeSidebyside h2,
+  #costSidebyside h2 {
+    font-size: 1.5em !important;
+    flex-direction: column;
+    text-align: left;
+    justify-content: start;
+    /* align-items: start; */
+  }
+  #actualCostVary {
+    font-size: 1em;
+  }
+
 }
 
 @media (max-width: 600px) {
@@ -229,17 +247,12 @@ color: white;
   #dropdownFieldset {
     border-radius: 24px;
   }
+
   #responses {
     width: calc(100vw - 44pt);
     margin-left: 22pt;
     margin-right: 22pt;
   }
-  #distanceSidebyside, #timeSidebyside, #costSidebyside h2 { 
-    font-size: 0.8em !important;
-    flex-direction: column;
-    text-align: left;
-    justify-content: start;
-    align-items: start;
-  }
+
 
 }
