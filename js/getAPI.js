@@ -224,8 +224,10 @@ async function autoFillInit(type) {
       break;
   }
   const resultsElement = document.getElementById(resultsID);
+  resultsElement.style.visibility = "visible";
   if (inputType.value == '' || inputType.value == null) {
     resultsElement.innerHTML = '';
+    resultsElement.style.visibility = "hidden";
   } else {
     // @ts-ignore
     const { Place, AutocompleteSessionToken, AutocompleteSuggestion } =
@@ -308,10 +310,8 @@ function hideAutoResults(type) {
   }
   const resultsElement = document.getElementById(resultsID);
   if (!(document.activeElement == inputType)) {
-    document.getElementById('distance').innerText = resultsElement.innerHTML;
     resultsElement.innerHTML = '';
-  } else {
-    document.getElementById('distance').innerText = resultsElement.innerHTML;
+    resultsElement.style.visibility = "hidden";
   }
 }
 startInput.addEventListener('input', function () {
