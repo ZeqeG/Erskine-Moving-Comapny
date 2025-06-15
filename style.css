@@ -817,10 +817,10 @@ legend {
     box-sizing: border-box;
     max-width: 1200px;
 
- list-style-position: inside;
-  padding-left: 0;
-  -webkit-padding-start: 0;
-  padding-inline-start: 0;
+    list-style-position: inside;
+    padding-left: 0;
+    -webkit-padding-start: 0;
+    padding-inline-start: 0;
 }
 
 footer {
@@ -1049,6 +1049,34 @@ footer {
         margin-right: 22pt;
     }
 
+    .quoteContent {
+        width: calc(100% - 44pt);
+        margin-left: 22pt;
+        margin-right: 22pt;
+    }
+
+    .quoteInput {
+        font-size: 1em;
+    }
+
+    #quoteDate {
+        font-size: 1em;
+    }
+
+    #submitBtn, #quoteBtn {
+        font-size: 1em;
+    }
+
+    fieldset {
+        height: 5em;
+    }
+
+    legend {
+        font-size: 0.85em;
+    }
+    .dropdown {
+        font-size: 1em;
+    }
 }
 
 #mobileLinksContainer {

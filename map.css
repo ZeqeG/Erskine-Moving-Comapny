@@ -97,7 +97,7 @@ input:focus::placeholder {
 .quoteHeaderText {
   margin-top: 30pt;
   margin-left: 44pt;
-margin-right: 44pt;
+  margin-right: 44pt;
 }
 
 
@@ -193,4 +193,22 @@ margin-right: 44pt;
     margin-right: 44pt;
   }
 
+}
+
+@media (max-width: 600px) {
+  .inputs {
+    width: calc(100vw - 44pt);
+    margin-left: 22pt;
+    margin-right: 22pt;
+  }
+
+  .quoteHeaderText {
+    margin-left: 22pt;
+  }
+
+  #resultsOrgin,
+  #resultsDestination {
+    width: calc(100vw - 44pt);
+    margin-top: 46px;
+  }
 }
