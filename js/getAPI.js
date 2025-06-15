@@ -309,6 +309,7 @@ function hideAutoResults(type) {
   const resultsElement = document.getElementById(resultsID);
   if (!(document.activeElement == inputType)) {
     resultsElement.innerHTML = '';
+    document.getElementById('distance').innerText = document.activeElement.id;
   }
 }
 startInput.addEventListener('input', function () {
