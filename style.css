@@ -256,6 +256,7 @@ h1 {
 .descriptionAndButton {
     display: flex;
     flex-direction: column;
+
 }
 
 #submitBtn,
@@ -679,6 +680,7 @@ legend {
     max-width: 800px;
 
     margin-right: 16pt;
+    text-wrap: balance;
 }
 
 .longDescription {
@@ -689,7 +691,7 @@ legend {
 }
 
 .pulledDescription {
-    max-width: 2400px;
+    max-width: 800px;
     text-wrap: balance;
     border: solid;
     border-width: 1.5px;
@@ -704,6 +706,7 @@ legend {
 
 .pulledDescription p {
     margin: 0;
+    width: 100%;
 }
 
 
