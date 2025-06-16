@@ -45,6 +45,7 @@ function calcMinutes(minutes) {
 }
 
 function getQuote() {
+
   responseEl.style.display = "none"
   errorEl.innerText = '';
   orginRes = startInput.value;
@@ -71,7 +72,7 @@ function getQuote() {
     } else if (orginRes.toLowerCase().includes('or')) {
       inOregon++
     }
-    
+
     if (destinationComponents.toString() !== '') {
       for (i = 0; i < destinationComponents.length; i++) {
         if (destinationComponents[i].types[0] == "administrative_area_level_1") {
@@ -86,7 +87,7 @@ function getQuote() {
     } else if (orginRes.toLowerCase().includes('or')) {
       inOregon++
     }
-    
+
     if (inOregon == 2) {
       initMap();
     } else {
@@ -97,6 +98,8 @@ function getQuote() {
     console.log('no input' + JSON.stringify(orginRes) + JSON.stringify(destinationRes));
     errorEl.innerText = 'Please fill both address fields.';
   }
+
+
 }
 function initMap() {
   const bounds = new google.maps.LatLngBounds();
@@ -136,7 +139,8 @@ function initMap() {
     timeEl.innerText = Math.floor(totalMinutes / 60) + ' hours ' + Math.floor(Math.ceil((totalMinutes % 60) / 15) * 15) + ' mins';
     distanceEl.innerText = response.rows[0].elements[0].distance.text;
     costEl.innerText = '$' + (cost / 100).toLocaleString('en-US');
-    responseEl.style.display = "block";
+    responseEl.style.display = "flex";
+    document.getElementById("responses").scrollIntoView();
 
     // show on map
     console.log(response.rows[0].elements[0].distance);
@@ -174,11 +178,11 @@ function initMap() {
       }
     }
   })
-  .catch((err) => {
-    console.log(err);
-    calcMain.style.display = "none";
-    calcAlt.style.display = "flex";
-  });
+    .catch((err) => {
+      console.log(err);
+      calcMain.style.display = "none";
+      calcAlt.style.display = "flex";
+    });
 }
 function getQuoteAlt() {
   errorEl = document.getElementById("errorAlt");
