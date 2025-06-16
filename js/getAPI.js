@@ -260,29 +260,6 @@ async function autoFillInit(type) {
     resultsElement.style.visibility = "hidden";
   } else {
     // @ts-ignore
-    const { Place, AutocompleteSessionToken, AutocompleteSuggestion } =
-      await google.maps.importLibrary("places");
-    // Add an initial request body.
-    let request = {
-      input: inputType.value,
-      // locationRestriction: {
-      //   west: -122.44,
-      //   north: 37.8,
-      //   east: -122.39,
-      //   south: 37.78,
-      // },
-      // origin: { lat: 37.7893, lng: -122.4039 },
-      // includedPrimaryTypes: ["restaurant"],
-      language: "en-US",
-      region: "us",
-    };
-    // Create a session token.
-    const token = new AutocompleteSessionToken();
-
-    // Add the token to the request.
-    // @ts-ignore
-    request.sessionToken = token;
-
     // Fetch autocomplete suggestions.
     let thisRequest = ++requestNumber;
     let thisTimer = ++requestTimer;
@@ -290,7 +267,27 @@ async function autoFillInit(type) {
     async function getResponse() {
       // console.log(thisTimer + ', ' + requestTimer);
       if (thisTimer == requestTimer) {
-        const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions(request);
+        const { AutocompleteSessionToken, AutocompleteSuggestion } =
+          await google.maps.importLibrary("places");
+        // Add an initial request body.
+        let request = {
+          input: inputType.value,
+          locationRestriction: {
+            west: -124.6,
+            north: 46.28,
+            east: -116.43,
+            south: 41.99,
+          },
+          language: "en-US",
+          region: "us",
+        };
+        // Create a session token.
+        const token = new AutocompleteSessionToken();
+
+        // Add the token to the request.
+        // @ts-ignore
+        request.sessionToken = token;
+        const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions(request, {fields: 'places.formattedAddress,places.displayName.text'});
         if (thisRequest !== requestNumber) return;
         resultsElement.innerHTML = '';
         for (let suggestion of suggestions) {
