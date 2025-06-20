@@ -2,7 +2,6 @@ var orginRes = "";
 var destinationRes = "";
 var orginComponents = [];
 var destinationComponents = [];
-console.log(orginComponents.toString());
 const calcMain = document.getElementById("calcMain");
 const calcAlt = document.getElementById("calcAlt");
 const startInput = document.getElementById("quoteStartLocation");
@@ -101,13 +100,16 @@ function getQuote() {
 
 
 }
-function initMap() {
+async function initMap() {
+  await google.maps.importLibrary("maps");
+  await google.maps.importLibrary("marker");
   const bounds = new google.maps.LatLngBounds();
   const markersArray = [];
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 55.53, lng: 9.4 },
     zoom: 10,
     disableDefaultUI: true,
+    mapId: "1",
   });
   // initialize services
   const geocoder = new google.maps.Geocoder();
@@ -125,17 +127,17 @@ function initMap() {
   // get distance matrix response
   service.getDistanceMatrix(request).then((response) => {
     //calculate cost
-    console.log(JSON.stringify(response));
+    // console.log(JSON.stringify(response));
     let truckType = document.getElementById("truck-selector").value;
     calcTruck(truckType);
     let timeMinutes = response.rows[0].elements[0].duration.value / 60;
     var totalMinutes = calcMinutes(timeMinutes);
-    console.log('truckcost $' + (truckCost / 100).toLocaleString('en-US'));
-    console.log('timecost $' + ((150 * (truckTime + response.rows[0].elements[0].duration.value / 60)) / 100).toLocaleString('en-US'));
-    console.log('distancecost $' + ((0.8 * response.rows[0].elements[0].distance.value * 0.06213712) / 100).toLocaleString('en-US'));
+    // console.log('truckcost $' + (truckCost / 100).toLocaleString('en-US'));
+    // console.log('timecost $' + ((150 * (truckTime + response.rows[0].elements[0].duration.value / 60)) / 100).toLocaleString('en-US'));
+    // console.log('distancecost $' + ((0.8 * response.rows[0].elements[0].distance.value * 0.06213712) / 100).toLocaleString('en-US'));
     let miles = response.rows[0].elements[0].distance.value * 0.06213712;
     let cost = calcCost(timeMinutes, miles);
-    console.log('total $' + (cost / 100).toLocaleString('en-US'));
+    // console.log('total $' + (cost / 100).toLocaleString('en-US'));
     timeEl.innerText = Math.floor(totalMinutes / 60) + ' hours ' + Math.floor(Math.ceil((totalMinutes % 60) / 15) * 15) + ' mins';
     distanceEl.innerText = response.rows[0].elements[0].distance.text;
     costEl.innerText = '$' + (cost / 100).toLocaleString('en-US');
@@ -143,21 +145,30 @@ function initMap() {
     document.getElementById("responses").scrollIntoView();
 
     // show on map
-    console.log(response.rows[0].elements[0].distance);
-    console.log(response.rows[0].elements[0].duration);
+    // console.log(response.rows[0].elements[0].distance);
+    // console.log(response.rows[0].elements[0].duration);
     const originList = response.originAddresses;
     const destinationList = response.destinationAddresses;
 
     deleteMarkers(markersArray);
-
+    const pinTo = new google.maps.marker.PinElement({
+      glyphColor: "#ff8300",
+      background: "#FFD514",
+      borderColor: "#ff8300",
+    });
+    const pinFrom = new google.maps.marker.PinElement({
+      // glyphColor: "#ff8300",
+      // background: "#FFD514",
+      // borderColor: "#ff8300",
+    });
     const showGeocodedAddressOnMap = (asDestination) => {
       const handler = ({ results }) => {
         map.fitBounds(bounds.extend(results[0].geometry.location));
         markersArray.push(
-          new google.maps.Marker({
+          new google.maps.marker.AdvancedMarkerElement({
             map,
             position: results[0].geometry.location,
-            label: asDestination ? "To" : "From",
+            content: asDestination ? pinTo.element : pinFrom.element,
           }),
         );
       };
@@ -188,7 +199,7 @@ function getQuoteAlt() {
   errorEl = document.getElementById("errorAlt");
   errorEl.innerText = '';
   if (document.getElementById('scales').checked == true) {
-    console.log(distanceInput.value);
+    // console.log(distanceInput.value);
     if (distanceInput.value == "" || distanceInput.value == null) {
       console.log('no distance');
       errorEl.innerText = "Please enter your move distance.";
@@ -207,6 +218,7 @@ function getQuoteAlt() {
       distanceEl.innerText = miles + ' miles';
       costEl.innerText = '$' + (cost / 100).toLocaleString('en-US');
       responseEl.style.display = "block";
+      defaultMap();
     }
   } else {
     console.log('address not in Oregon');
@@ -248,37 +260,34 @@ async function autoFillInit(type) {
     resultsElement.style.visibility = "hidden";
   } else {
     // @ts-ignore
-    const { Place, AutocompleteSessionToken, AutocompleteSuggestion } =
-      await google.maps.importLibrary("places");
-    // Add an initial request body.
-    let request = {
-      input: inputType.value,
-      // locationRestriction: {
-      //   west: -122.44,
-      //   north: 37.8,
-      //   east: -122.39,
-      //   south: 37.78,
-      // },
-      // origin: { lat: 37.7893, lng: -122.4039 },
-      // includedPrimaryTypes: ["restaurant"],
-      language: "en-US",
-      region: "us",
-    };
-    // Create a session token.
-    const token = new AutocompleteSessionToken();
-
-    // Add the token to the request.
-    // @ts-ignore
-    request.sessionToken = token;
-
     // Fetch autocomplete suggestions.
     let thisRequest = ++requestNumber;
     let thisTimer = ++requestTimer;
-    console.log(thisTimer + ', ' + requestTimer);
+    // console.log(thisTimer + ', ' + requestTimer);
     async function getResponse() {
-      console.log(thisTimer + ', ' + requestTimer);
+      // console.log(thisTimer + ', ' + requestTimer);
       if (thisTimer == requestTimer) {
-        const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions(request);
+        const { AutocompleteSessionToken, AutocompleteSuggestion } =
+          await google.maps.importLibrary("places");
+        // Add an initial request body.
+        let request = {
+          input: inputType.value,
+          locationRestriction: {
+            west: -124.6,
+            north: 46.28,
+            east: -116.43,
+            south: 41.99,
+          },
+          language: "en-US",
+          region: "us",
+        };
+        // Create a session token.
+        const token = new AutocompleteSessionToken();
+
+        // Add the token to the request.
+        // @ts-ignore
+        request.sessionToken = token;
+        const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions(request, {fields: 'places.formattedAddress,places.displayName.text'});
         if (thisRequest !== requestNumber) return;
         resultsElement.innerHTML = '';
         for (let suggestion of suggestions) {
@@ -294,9 +303,9 @@ async function autoFillInit(type) {
             fields: ["formattedAddress", "addressComponents"],
           });
           listItem.addEventListener('click', function (i) {
-            console.log(this.innerText);
-            console.log(place.addressComponents);
-            console.log(type)
+            // console.log(this.innerText);
+            // console.log(place.addressComponents);
+            // console.log(type)
             inputType.value = this.innerText;
             switch (type) {
               case 'orgin':
@@ -357,9 +366,8 @@ window.addEventListener('mousedown', function () {
 onload = () => {
   defaultMap()
 }
-function defaultMap() {
-  const bounds = new google.maps.LatLngBounds();
-  const markersArray = [];
+async function defaultMap() {
+  await google.maps.importLibrary("maps");
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 43.93116, lng: -120.60676 }, //43.93116° N, 120.60676° W
     zoom: 6,
