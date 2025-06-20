@@ -1049,6 +1049,13 @@ footer {
         margin-right: 22pt;
     }
 
+    .servicesSection {
+        width: calc(100% - 44pt);
+        margin-left: 22pt;
+        margin-right: 22pt;
+    }
+
+
     .quoteContent {
         width: calc(100% - 44pt);
         margin-left: 22pt;
@@ -1063,7 +1070,8 @@ footer {
         font-size: 1em;
     }
 
-    #submitBtn, #quoteBtn {
+    #submitBtn,
+    #quoteBtn {
         font-size: 1em;
     }
 
@@ -1074,9 +1082,12 @@ footer {
     legend {
         font-size: 0.85em;
     }
+
     .dropdown {
         font-size: 1em;
     }
+
+
 }
 
 #mobileLinksContainer {

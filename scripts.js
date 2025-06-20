@@ -161,4 +161,25 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+
+    movingServicesBtn = document.getElementById("movingServicesBtn");
+    deliveriesServicesBtn = document.getElementById("deliveriesServicesBtn");
+    haulingServicesBtn = document.getElementById("haulingServicesBtn");
+    cleanoutsServicesBtn = document.getElementById("cleanoutsServicesBtn");
+
+    window.addEventListener('resize', function (event) {
+        if (window.innerWidth < 800) {
+            movingServicesBtn.innerHTML = "Moving Services";
+            deliveriesServicesBtn.innerHTML = "Delivery Services";
+            haulingServicesBtn.innerHTML = "Hauling Services";
+            cleanoutsServicesBtn.innerHTML = "Cleanout Services";
+        }
+        else {
+            movingServicesBtn.innerHTML = "Learn About our Moving Services";
+            deliveriesServicesBtn.innerHTML = "Learn About our Deliveries Services";
+            haulingServicesBtn.innerHTML = "Learn About our Hauling Services";
+            cleanoutsServicesBtn.innerHTML = "Learn About our Cleanout Services";
+        }
+
+    });
 });
